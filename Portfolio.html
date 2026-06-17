@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yash Panchal — Unity Game Developer</title>
+  <meta name="description" content="Unity Game Developer with 2.5 years of experience building mobile games for Android and iOS. Specializing in gameplay systems, UI implementation, and mobile optimization." />
+  <meta name="author" content="Yash Panchal" />
+  <meta property="og:title" content="Yash Panchal — Unity Game Developer" />
+  <meta property="og:description" content="Unity Game Developer with 2.5 years of experience building mobile games for Android and iOS." />
+  <meta property="og:type" content="website" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            canvas:  '#F8F7F4',
+            surface: '#FFFFFF',
+            ink:     '#1A1A1A',
+            muted:   '#6B7280',
+            border:  '#E5E7EB',
+            tag:     '#F3F4F6',
+            accent: {
+              DEFAULT: '#4F46E5',
+              dark:    '#4338CA',
+              light:   '#EEF2FF',
+            },
+            green: {
+              DEFAULT: '#059669',
+              light:   '#ECFDF5',
+            },
+            amber: {
+              DEFAULT: '#D97706',
+              light:   '#FFFBEB',
+            },
+          },
+          letterSpacing: { label: '0.06em' },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #F8F7F4; color: #1A1A1A; }
+
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(79,70,229,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,70,229,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: #4F46E5;
+      transition: width 0.2s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card {
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .project-card:hover {
+      box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+      transform: translateY(-3px);
+    }
+
+    .timeline-dot::before {
+      content: '';
+      position: absolute;
+      left: -29px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #4F46E5;
+      border: 2px solid #F8F7F4;
+      box-shadow: 0 0 0 2px #4F46E5;
+    }
+
+    .metric-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    #modal-overlay {
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    #modal-content {
+      max-height: 90vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #E5E7EB transparent;
+    }
+
+    .arch-diagram {
+      background: #F3F4F6;
+      border: 1px dashed #D1D5DB;
+      border-radius: 8px;
+      padding: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #6B7280;
+      white-space: pre;
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+
+    .process-connector {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, #4F46E5, #E5E7EB);
+    }
+
+    *:focus-visible {
+      outline: 2px solid #4F46E5;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .project-card { transition: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ════════════════════════════════════════════════════ -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#hero" class="font-mono text-sm font-500 text-ink tracking-label">YP<span class="text-accent">.</span></a>
+
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-muted">
+        <li><a href="#about"      class="nav-link hover:text-ink transition-colors">About</a></li>
+        <li><a href="#experience" class="nav-link hover:text-ink transition-colors">Experience</a></li>
+        <li><a href="#projects"   class="nav-link hover:text-ink transition-colors">Projects</a></li>
+        <li><a href="#skills"     class="nav-link hover:text-ink transition-colors">Skills</a></li>
+        <li><a href="#education"  class="nav-link hover:text-ink transition-colors">Education</a></li>
+        <li><a href="#contact"    class="nav-link hover:text-ink transition-colors">Contact</a></li>
+      </ul>
+
+      <!-- REPLACE: Link to your actual resume PDF -->
+      <a href="#"
+         class="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-dark transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+        </svg>
+        Resume
+      </a>
+
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-tag transition-colors" aria-label="Toggle menu">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon-bars"  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          <path id="menu-icon-close" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden"/>
+        </svg>
+      </button>
+    </nav>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-surface border-t border-border px-6 py-4">
+      <ul class="flex flex-col gap-4 text-sm font-medium text-muted">
+        <li><a href="#about"      class="mobile-nav-link block hover:text-ink transition-colors">About</a></li>
+        <li><a href="#experience" class="mobile-nav-link block hover:text-ink transition-colors">Experience</a></li>
+        <li><a href="#projects"   class="mobile-nav-link block hover:text-ink transition-colors">Projects</a></li>
+        <li><a href="#skills"     class="mobile-nav-link block hover:text-ink transition-colors">Skills</a></li>
+        <li><a href="#education"  class="mobile-nav-link block hover:text-ink transition-colors">Education</a></li>
+        <li><a href="#contact"    class="mobile-nav-link block hover:text-ink transition-colors">Contact</a></li>
+        <li><a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-lg w-fit text-sm">Resume ↓</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════ -->
+  <section id="hero" class="hero-grid min-h-screen flex items-center pt-20">
+    <div class="max-w-6xl mx-auto px-6 py-24 w-full">
+      <div class="max-w-3xl">
+
+        <p class="font-mono text-xs text-accent tracking-label uppercase mb-6 reveal">
+          Unity Game Developer · Android & iOS
+        </p>
+
+        <h1 class="text-5xl md:text-7xl font-extrabold text-ink leading-none tracking-tight mb-6 reveal">
+          Yash<br/>Panchal<span class="text-accent">.</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-muted font-normal leading-relaxed mb-10 max-w-2xl reveal">
+          I build gameplay systems, intuitive user experiences, and optimized
+          mobile games using Unity — with 2.5 years of hands-on experience
+          shipping titles for Android and iOS.
+        </p>
+
+        <!-- Stat strip -->
+        <div class="flex flex-wrap gap-8 mb-12 reveal">
+          <div>
+            <p class="text-3xl font-bold text-ink">2.5</p>
+            <p class="text-sm text-muted mt-0.5">Years Experience</p>
+          </div>
+          <div class="w-px bg-border self-stretch hidden sm:block"></div>
+          <div>
+            <p class="text-3xl font-bold text-ink">5</p>
+            <p class="text-sm text-muted mt-0.5">Games Shipped</p>
+          </div>
+          <div class="w-px bg-border self-stretch hidden sm:block"></div>
+          <div>
+            <p class="text-3xl font-bold text-ink">2</p>
+            <p class="text-sm text-muted mt-0.5">Platforms</p>
+          </div>
+          <div class="w-px bg-border self-stretch hidden sm:block"></div>
+          <div>
+            <p class="text-3xl font-bold text-ink">3+</p>
+            <p class="text-sm text-muted mt-0.5">Game Genres</p>
+          </div>
+        </div>
+
+        <!-- Platform tags -->
+        <div class="flex flex-wrap gap-2 mb-12 reveal">
+          <span class="font-mono text-xs px-3 py-1.5 bg-tag text-muted rounded-full">Android</span>
+          <span class="font-mono text-xs px-3 py-1.5 bg-tag text-muted rounded-full">iOS</span>
+          <span class="font-mono text-xs px-3 py-1.5 bg-tag text-muted rounded-full">Unity</span>
+          <span class="font-mono text-xs px-3 py-1.5 bg-tag text-muted rounded-full">C#</span>
+          <span class="font-mono text-xs px-3 py-1.5 bg-tag text-muted rounded-full">AR (Vuforia)</span>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-4 reveal">
+          <a href="#projects"
+             class="px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors text-sm">
+            View Projects
+          </a>
+          <a href="#contact"
+             class="px-6 py-3 border border-border bg-surface text-ink font-semibold rounded-lg hover:border-accent hover:text-accent transition-colors text-sm">
+            Get in Touch
+          </a>
+          <!-- REPLACE: Link to your actual resume PDF -->
+          <a href="#"
+             class="px-6 py-3 border border-border bg-surface text-ink font-semibold rounded-lg hover:border-accent hover:text-accent transition-colors text-sm inline-flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            </svg>
+            Download Resume
+          </a>
+        </div>
+      </div>
+
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-muted">
+        <span class="text-xs font-mono tracking-label">SCROLL</span>
+        <div class="w-px h-10 bg-gradient-to-b from-muted to-transparent"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       ABOUT
+  ════════════════════════════════════════════════════ -->
+  <section id="about" class="py-24 bg-surface">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <p class="font-mono text-xs text-accent tracking-label uppercase mb-3 reveal">About</p>
+      <h2 class="text-4xl font-bold text-ink mb-16 reveal">How I work.</h2>
+
+      <div class="grid md:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: photo + quick facts -->
+        <div class="reveal">
+          <!-- REPLACE: Replace with your actual photo -->
+          <div class="w-full aspect-[4/3] bg-tag rounded-2xl mb-8 overflow-hidden flex items-center justify-center border border-border">
+            <span class="text-muted text-sm font-mono">[ Your Photo Here ]</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div class="p-4 bg-canvas rounded-xl border border-border">
+              <p class="font-mono text-xs text-muted tracking-label uppercase mb-1">Location</p>
+              <p class="font-semibold text-ink text-sm">Ahmedabad, Gujarat</p>
+            </div>
+            <div class="p-4 bg-canvas rounded-xl border border-border">
+              <p class="font-mono text-xs text-muted tracking-label uppercase mb-1">Availability</p>
+              <p class="font-semibold text-green text-sm flex items-center gap-1.5">
+                <span class="w-2 h-2 bg-green rounded-full inline-block"></span>
+                Open to Work
+              </p>
+            </div>
+            <div class="p-4 bg-canvas rounded-xl border border-border">
+              <p class="font-mono text-xs text-muted tracking-label uppercase mb-1">Speciality</p>
+              <p class="font-semibold text-ink text-sm">Gameplay Systems</p>
+            </div>
+            <div class="p-4 bg-canvas rounded-xl border border-border">
+              <p class="font-mono text-xs text-muted tracking-label uppercase mb-1">Engine</p>
+              <p class="font-semibold text-ink text-sm">Unity (C#)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: narrative -->
+        <div class="reveal">
+          <p class="text-lg text-muted leading-relaxed mb-6">
+            I'm a Unity developer focused on mobile — building gameplay systems,
+            UI flows, and AR experiences for Android and iOS. Over 2.5 years at
+            The Intellify, I've worked across hypercasual, puzzle, car, and AR
+            projects, taking features from design all the way through to store deployment.
+          </p>
+
+          <p class="text-lg text-muted leading-relaxed mb-8">
+            Working across multiple game genres in a professional studio has taught me
+            to write code that holds up — modular, readable, and structured with OOP
+            principles and design patterns. I care about performance because our players
+            are on real mid-range Android devices, and every frame counts.
+          </p>
+
+          <blockquote class="border-l-4 border-accent pl-6 py-2 mb-8">
+            <p class="text-xl font-semibold text-ink leading-snug">
+              "Good gameplay code is code a designer can configure and a teammate
+              can maintain — not just code that ships."
+            </p>
+          </blockquote>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 bg-accent-light text-accent text-xs font-semibold rounded-full">Gameplay Programming</span>
+            <span class="px-3 py-1.5 bg-accent-light text-accent text-xs font-semibold rounded-full">UI Implementation</span>
+            <span class="px-3 py-1.5 bg-accent-light text-accent text-xs font-semibold rounded-full">Mobile Optimization</span>
+            <span class="px-3 py-1.5 bg-accent-light text-accent text-xs font-semibold rounded-full">AR Development</span>
+            <span class="px-3 py-1.5 bg-accent-light text-accent text-xs font-semibold rounded-full">ScriptableObject Architecture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       EXPERIENCE
+  ════════════════════════════════════════════════════ -->
+  <section id="experience" class="py-24 bg-canvas">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <p class="font-mono text-xs text-accent tracking-label uppercase mb-3 reveal">Experience</p>
+      <h2 class="text-4xl font-bold text-ink mb-16 reveal">Where I've worked.</h2>
+
+      <div class="relative pl-8 border-l-2 border-border space-y-14">
+
+        <!-- Role 1: Unity Game Developer -->
+        <div class="relative reveal">
+          <div class="timeline-dot"></div>
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+            <div>
+              <h3 class="text-xl font-bold text-ink">Unity Game Developer</h3>
+              <p class="text-accent font-semibold text-sm mt-0.5">The Intellify</p>
+            </div>
+            <span class="font-mono text-xs text-muted bg-tag px-3 py-1.5 rounded-full self-start whitespace-nowrap">Jan 2024 – June 2026</span>
+          </div>
+          <ul class="space-y-2 text-muted text-sm leading-relaxed mb-4">
+            <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Developed and deployed multiple mobile games and AR applications for Android and iOS using Unity and C#, with a focus on scalable gameplay systems and modular architecture.</span></li>
+            <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Integrated Firebase (Analytics, Crashlytics) and Google AdMob to support analytics, crash monitoring, and ad-based monetization across shipped titles.</span></li>
+            <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Applied OOP principles and design patterns to produce reusable, maintainable codebases suitable for production release.</span></li>
+            <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Contributed across gameplay programming, UI implementation, performance optimization, and feature integration on multiple game genres.</span></li>
+          </ul>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Unity</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">C#</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Firebase</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">AdMob</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Android</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">iOS</span>
+          </div>
+        </div>
+
+        <!-- Role 2: Unity Developer Intern -->
+        <div class="relative reveal">
+          <div class="timeline-dot"></div>
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+            <div>
+              <h3 class="text-xl font-bold text-ink">Unity Developer Intern</h3>
+              <p class="text-accent font-semibold text-sm mt-0.5">The Intellify</p>
+            </div>
+            <span class="font-mono text-xs text-muted bg-tag px-3 py-1.5 rounded-full self-start whitespace-nowrap">June 2023 – Dec 2023</span>
+          </div>
+          <ul class="space-y-2 text-muted text-sm leading-relaxed mb-4">
+            <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Assisted in Unity-based game and application development, building practical foundations in C#, gameplay programming, UI handling, and debugging.</span></li>
+            <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Gained hands-on experience in AR development, including marker-based interactions and 3D content integration using Vuforia.</span></li>
+            <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Contributed to feature implementation while following collaborative workflows including version control and mobile application deployment processes.</span></li>
+          </ul>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Unity</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">C#</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Vuforia</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">GitHub</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Android</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">iOS</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PROJECTS
+  ════════════════════════════════════════════════════ -->
+  <section id="projects" class="py-24 bg-surface">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <p class="font-mono text-xs text-accent tracking-label uppercase mb-3 reveal">Projects</p>
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
+        <h2 class="text-4xl font-bold text-ink reveal">Games I've shipped.</h2>
+        <p class="text-sm text-muted reveal max-w-sm text-right hidden sm:block">
+          Click any card to open the full case study with architecture details and technical decisions.
+        </p>
+      </div>
+
+      <!-- Featured: Hyper-Casual Runner (large card) -->
+      <div class="group project-card bg-canvas rounded-2xl border border-border overflow-hidden mb-8 cursor-pointer reveal"
+           onclick="openCase('case1')">
+        <div class="grid md:grid-cols-2">
+          <div class="aspect-video md:aspect-auto bg-accent-light flex items-center justify-center border-b md:border-b-0 md:border-r border-border min-h-48 md:min-h-80">
+            <!-- REPLACE: <img src="your-screenshot.jpg" alt="Hyper-Casual Runner" class="w-full h-full object-cover" /> -->
+            <span class="font-mono text-sm text-accent text-center px-4">[ Game Screenshot / GIF ]<br/>Recommended: 800×450px</span>
+          </div>
+          <div class="p-8 md:p-10 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="font-mono text-xs px-2.5 py-1 bg-accent-light text-accent rounded-full font-semibold">Hyper-Casual</span>
+                <span class="font-mono text-xs px-2.5 py-1 bg-tag text-muted rounded-full">Android · iOS</span>
+                <span class="font-mono text-xs px-2.5 py-1 bg-tag text-muted rounded-full">Endless Runner</span>
+              </div>
+              <h3 class="text-2xl font-bold text-ink mb-3">Hyper-Casual Runner</h3>
+              <p class="text-muted text-sm leading-relaxed mb-6">
+                An endless runner featuring procedural obstacle generation, dynamic difficulty
+                scaling, collectibles, in-game currency, and a daily rewards system.
+                Monetized with AdMob interstitial and rewarded ads, with responsive UI
+                designed across multiple screen resolutions.
+              </p>
+
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="metric-pill bg-accent-light text-accent">Procedural Generation</span>
+                <span class="metric-pill bg-green-light text-green">AdMob Integrated</span>
+                <span class="metric-pill bg-amber-light text-amber">Dynamic Difficulty</span>
+              </div>
+
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Unity</span>
+                <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">C#</span>
+                <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">AdMob</span>
+                <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Firebase</span>
+                <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Object Pooling</span>
+              </div>
+
+              <div class="p-4 bg-accent-light rounded-xl border-l-4 border-accent mb-6">
+                <p class="font-mono text-xs text-accent tracking-label uppercase mb-1">Key Technical Contribution</p>
+                <p class="text-sm text-ink font-medium">Implemented an object pooling system for obstacle spawning, eliminating runtime allocations and GC pressure during gameplay.</p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <button onclick="event.stopPropagation(); openCase('case1')"
+                      class="flex-1 py-2.5 bg-accent text-white text-sm font-semibold rounded-lg hover:bg-accent-dark transition-colors">
+                View Case Study
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Puzzle Game -->
+        <div class="project-card bg-canvas rounded-2xl border border-border overflow-hidden cursor-pointer reveal"
+             onclick="openCase('case2')">
+          <div class="aspect-video bg-tag flex items-center justify-center border-b border-border">
+            <!-- REPLACE: <img src="puzzle-screenshot.jpg" alt="Puzzle Game" class="w-full h-full object-cover" /> -->
+            <span class="font-mono text-xs text-muted text-center px-3">[ Screenshot ]</span>
+          </div>
+          <div class="p-6">
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <span class="font-mono text-xs px-2 py-0.5 bg-accent-light text-accent rounded-full font-semibold">Puzzle</span>
+              <span class="font-mono text-xs px-2 py-0.5 bg-tag text-muted rounded-full">Android · iOS</span>
+            </div>
+            <h3 class="text-lg font-bold text-ink mb-2">Puzzle Game</h3>
+            <p class="text-muted text-xs leading-relaxed mb-4">
+              Level-based puzzle game with a scalable difficulty system and data-driven level
+              design. Modular systems support progressive unlocks and mechanic variation.
+              Custom 3D assets created and optimized in Blender.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="metric-pill bg-accent-light text-accent text-xs">Data-Driven Levels</span>
+              <span class="metric-pill bg-green-light text-green text-xs">Blender Assets</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">Unity</span>
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">C#</span>
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">Blender</span>
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">ScriptableObjects</span>
+            </div>
+            <div class="p-3 bg-accent-light rounded-lg mb-5">
+              <p class="text-xs text-ink font-medium"><span class="text-accent font-semibold">Key Contribution:</span> Built a data-driven level system using ScriptableObjects, enabling rapid designer iteration without code changes.</p>
+            </div>
+            <button onclick="event.stopPropagation(); openCase('case2')"
+                    class="w-full py-2 text-sm font-semibold text-accent border border-accent rounded-lg hover:bg-accent hover:text-white transition-colors">
+              View Case Study
+            </button>
+          </div>
+        </div>
+
+        <!-- Car Game -->
+        <div class="project-card bg-canvas rounded-2xl border border-border overflow-hidden cursor-pointer reveal"
+             onclick="openCase('case3')">
+          <div class="aspect-video bg-tag flex items-center justify-center border-b border-border">
+            <span class="font-mono text-xs text-muted text-center px-3">[ Screenshot ]</span>
+          </div>
+          <div class="p-6">
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <span class="font-mono text-xs px-2 py-0.5 bg-accent-light text-accent rounded-full font-semibold">Racing</span>
+              <span class="font-mono text-xs px-2 py-0.5 bg-tag text-muted rounded-full">Android · iOS</span>
+            </div>
+            <h3 class="text-lg font-bold text-ink mb-2">Car Game</h3>
+            <p class="text-muted text-xs leading-relaxed mb-4">
+              Endless road game with modular track generation on curved paths, a traffic
+              system with dynamic density, and car tuning mechanics including vehicle
+              purchase and weapon upgrade progression.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="metric-pill bg-accent-light text-accent text-xs">Modular Track Gen</span>
+              <span class="metric-pill bg-green-light text-green text-xs">Physics-Based</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">Unity</span>
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">C#</span>
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">Physics</span>
+            </div>
+            <div class="p-3 bg-accent-light rounded-lg mb-5">
+              <p class="text-xs text-ink font-medium"><span class="text-accent font-semibold">Key Contribution:</span> Developed endless road generation using modular segment pooling to maintain stable performance during continuous world generation.</p>
+            </div>
+            <button onclick="event.stopPropagation(); openCase('case3')"
+                    class="w-full py-2 text-sm font-semibold text-accent border border-accent rounded-lg hover:bg-accent hover:text-white transition-colors">
+              View Case Study
+            </button>
+          </div>
+        </div>
+
+        <!-- AR App -->
+        <div class="project-card bg-canvas rounded-2xl border border-border overflow-hidden cursor-pointer reveal"
+             onclick="openCase('case4')">
+          <div class="aspect-video bg-tag flex items-center justify-center border-b border-border">
+            <span class="font-mono text-xs text-muted text-center px-3">[ Screenshot ]</span>
+          </div>
+          <div class="p-6">
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <span class="font-mono text-xs px-2 py-0.5 bg-accent-light text-accent rounded-full font-semibold">AR Application</span>
+              <span class="font-mono text-xs px-2 py-0.5 bg-tag text-muted rounded-full">Android · iOS</span>
+            </div>
+            <h3 class="text-lg font-bold text-ink mb-2">AR Marker-Based App</h3>
+            <p class="text-muted text-xs leading-relaxed mb-4">
+              Educational AR application using Vuforia marker recognition to trigger
+              interactive content — videos, 3D models, animations, and particle effects —
+              with optimized tracking and native media playback.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              <span class="metric-pill bg-accent-light text-accent text-xs">Vuforia AR</span>
+              <span class="metric-pill bg-green-light text-green text-xs">Educational</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">Unity</span>
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">Vuforia</span>
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">C#</span>
+            </div>
+            <div class="p-3 bg-accent-light rounded-lg mb-5">
+              <p class="text-xs text-ink font-medium"><span class="text-accent font-semibold">Key Contribution:</span> Implemented image-recognition-driven content switching — a single marker surface dynamically loads videos, 3D models, and particle systems on demand.</p>
+            </div>
+            <button onclick="event.stopPropagation(); openCase('case4')"
+                    class="w-full py-2 text-sm font-semibold text-accent border border-accent rounded-lg hover:bg-accent hover:text-white transition-colors">
+              View Case Study
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SKILLS
+  ════════════════════════════════════════════════════ -->
+  <section id="skills" class="py-24 bg-canvas">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <p class="font-mono text-xs text-accent tracking-label uppercase mb-3 reveal">Skills</p>
+      <h2 class="text-4xl font-bold text-ink mb-16 reveal">Technical toolkit.</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Languages & Engine -->
+        <div class="p-6 bg-surface rounded-2xl border border-border reveal">
+          <div class="w-8 h-8 bg-accent-light rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-ink mb-4 text-sm tracking-wide">Languages & Engine</h3>
+          <ul class="space-y-2.5 text-sm text-muted">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Unity (Game Engine)</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>C# — OOP & SOLID</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Gameplay Programming</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>UI / UGUI</li>
+          </ul>
+        </div>
+
+        <!-- Systems & Architecture -->
+        <div class="p-6 bg-surface rounded-2xl border border-border reveal">
+          <div class="w-8 h-8 bg-accent-light rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-ink mb-4 text-sm tracking-wide">Systems & Architecture</h3>
+          <ul class="space-y-2.5 text-sm text-muted">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>ScriptableObject Architecture</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Object Pooling</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>GC Optimization</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Animation (Animator, Blend Trees, Timeline)</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Design Patterns</li>
+          </ul>
+        </div>
+
+        <!-- Tools & Services -->
+        <div class="p-6 bg-surface rounded-2xl border border-border reveal">
+          <div class="w-8 h-8 bg-accent-light rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-ink mb-4 text-sm tracking-wide">Tools & Services</h3>
+          <ul class="space-y-2.5 text-sm text-muted">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>GitHub</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Firebase (Analytics, Crashlytics)</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Google AdMob</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Visual Studio</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Blender (3D Modelling, UV Texturing)</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Figma</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Vuforia (AR)</li>
+          </ul>
+        </div>
+
+        <!-- Platforms -->
+        <div class="p-6 bg-surface rounded-2xl border border-border reveal">
+          <div class="w-8 h-8 bg-accent-light rounded-lg flex items-center justify-center mb-4">
+            <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-ink mb-4 text-sm tracking-wide">Platforms</h3>
+          <ul class="space-y-2.5 text-sm text-muted">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Android</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>iOS</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       EDUCATION
+  ════════════════════════════════════════════════════ -->
+  <section id="education" class="py-24 bg-surface">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <p class="font-mono text-xs text-accent tracking-label uppercase mb-3 reveal">Education</p>
+      <h2 class="text-4xl font-bold text-ink mb-16 reveal">Academic background.</h2>
+
+      <div class="max-w-2xl reveal">
+        <div class="p-8 bg-canvas rounded-2xl border border-border">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-6">
+            <div>
+              <h3 class="text-xl font-bold text-ink">Bachelor of Engineering</h3>
+              <p class="text-accent font-semibold text-sm mt-1">Computer Engineering</p>
+              <p class="text-muted text-sm mt-0.5">Gandhinagar Institute of Technology · Gandhinagar, Gujarat</p>
+            </div>
+            <span class="font-mono text-xs text-muted bg-tag px-3 py-1.5 rounded-full self-start whitespace-nowrap">June 2019 – July 2023</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="font-mono text-xs px-2 py-1 bg-accent-light text-accent rounded">Computer Engineering</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">OOP Fundamentals</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Data Structures</span>
+            <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Software Engineering</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       DEVELOPMENT PROCESS
+  ════════════════════════════════════════════════════ -->
+  <section id="process" class="py-24 bg-canvas">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <p class="font-mono text-xs text-accent tracking-label uppercase mb-3 reveal">Process</p>
+      <h2 class="text-4xl font-bold text-ink mb-16 reveal">How I build.</h2>
+
+      <div class="hidden md:flex items-start gap-0 reveal">
+
+        <div class="flex-1 text-center px-3">
+          <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">1</div>
+          <div class="w-px h-4 bg-border mx-auto mb-4"></div>
+          <h3 class="font-semibold text-ink text-sm mb-2">Planning</h3>
+          <p class="text-xs text-muted leading-relaxed">Understand scope, define gameplay systems, and plan modular architecture before writing any code.</p>
+        </div>
+        <div class="process-connector mt-5"></div>
+
+        <div class="flex-1 text-center px-3">
+          <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">2</div>
+          <div class="w-px h-4 bg-border mx-auto mb-4"></div>
+          <h3 class="font-semibold text-ink text-sm mb-2">Prototype</h3>
+          <p class="text-xs text-muted leading-relaxed">Build the core gameplay loop first. Validate feel and mechanics before adding systems or content.</p>
+        </div>
+        <div class="process-connector mt-5"></div>
+
+        <div class="flex-1 text-center px-3">
+          <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">3</div>
+          <div class="w-px h-4 bg-border mx-auto mb-4"></div>
+          <h3 class="font-semibold text-ink text-sm mb-2">Development</h3>
+          <p class="text-xs text-muted leading-relaxed">Feature-by-feature implementation using OOP principles, design patterns, and version control.</p>
+        </div>
+        <div class="process-connector mt-5"></div>
+
+        <div class="flex-1 text-center px-3">
+          <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">4</div>
+          <div class="w-px h-4 bg-border mx-auto mb-4"></div>
+          <h3 class="font-semibold text-ink text-sm mb-2">Testing</h3>
+          <p class="text-xs text-muted leading-relaxed">Device testing on real Android and iOS hardware, crash monitoring via Firebase Crashlytics.</p>
+        </div>
+        <div class="process-connector mt-5"></div>
+
+        <div class="flex-1 text-center px-3">
+          <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">5</div>
+          <div class="w-px h-4 bg-border mx-auto mb-4"></div>
+          <h3 class="font-semibold text-ink text-sm mb-2">Optimization</h3>
+          <p class="text-xs text-muted leading-relaxed">Object pooling, GC reduction, and profiler-guided improvements targeting mid-range mobile hardware.</p>
+        </div>
+        <div class="process-connector mt-5"></div>
+
+        <div class="flex-1 text-center px-3">
+          <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">6</div>
+          <div class="w-px h-4 bg-border mx-auto mb-4"></div>
+          <h3 class="font-semibold text-ink text-sm mb-2">Deployment</h3>
+          <p class="text-xs text-muted leading-relaxed">Build pipeline to Google Play and App Store with Firebase Analytics and AdMob configured for live monitoring.</p>
+        </div>
+
+      </div>
+
+      <!-- Mobile -->
+      <div class="md:hidden space-y-8 reveal">
+        <div class="flex gap-4"><div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">1</div><div><h3 class="font-semibold text-ink text-sm mb-1">Planning</h3><p class="text-xs text-muted leading-relaxed">Understand scope, define systems, and plan modular architecture.</p></div></div>
+        <div class="flex gap-4"><div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">2</div><div><h3 class="font-semibold text-ink text-sm mb-1">Prototype</h3><p class="text-xs text-muted leading-relaxed">Build and validate the core loop before adding content.</p></div></div>
+        <div class="flex gap-4"><div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">3</div><div><h3 class="font-semibold text-ink text-sm mb-1">Development</h3><p class="text-xs text-muted leading-relaxed">Feature-by-feature with OOP principles and version control.</p></div></div>
+        <div class="flex gap-4"><div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">4</div><div><h3 class="font-semibold text-ink text-sm mb-1">Testing</h3><p class="text-xs text-muted leading-relaxed">Device testing and crash monitoring via Firebase.</p></div></div>
+        <div class="flex gap-4"><div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">5</div><div><h3 class="font-semibold text-ink text-sm mb-1">Optimization</h3><p class="text-xs text-muted leading-relaxed">Pooling, GC reduction, and profiler-guided improvements.</p></div></div>
+        <div class="flex gap-4"><div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">6</div><div><h3 class="font-semibold text-ink text-sm mb-1">Deployment</h3><p class="text-xs text-muted leading-relaxed">Store build pipeline with analytics and live monitoring.</p></div></div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       CONTACT
+  ════════════════════════════════════════════════════ -->
+  <section id="contact" class="py-24 bg-surface">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <p class="font-mono text-xs text-accent tracking-label uppercase mb-3 reveal">Contact</p>
+      <h2 class="text-4xl font-bold text-ink mb-4 reveal">Let's work together.</h2>
+      <p class="text-muted text-lg mb-16 reveal max-w-xl">
+        Open to full-time roles and contract opportunities in mobile game development.
+        I usually respond within 24 hours.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-12">
+
+        <div class="reveal space-y-6">
+
+          <a href="mailto:panchalyash229@gmail.com"
+             class="flex items-center gap-4 p-5 bg-canvas rounded-xl border border-border hover:border-accent group transition-colors">
+            <div class="w-10 h-10 bg-accent-light rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-mono text-xs text-muted tracking-label uppercase mb-0.5">Email</p>
+              <p class="font-semibold text-ink group-hover:text-accent transition-colors text-sm">panchalyash229@gmail.com</p>
+            </div>
+          </a>
+
+          <!-- REPLACE: Update with your actual LinkedIn URL slug -->
+          <a href="https://linkedin.com/in/YashliPanchal" target="_blank" rel="noopener"
+             class="flex items-center gap-4 p-5 bg-canvas rounded-xl border border-border hover:border-accent group transition-colors">
+            <div class="w-10 h-10 bg-accent-light rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-mono text-xs text-muted tracking-label uppercase mb-0.5">LinkedIn</p>
+              <p class="font-semibold text-ink group-hover:text-accent transition-colors text-sm">linkedin.com/in/YashliPanchal</p>
+            </div>
+          </a>
+
+          <div class="p-5 bg-canvas rounded-xl border border-border">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 bg-accent-light rounded-lg flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-mono text-xs text-muted tracking-label uppercase mb-0.5">Phone</p>
+                <p class="font-semibold text-ink text-sm">+91 9104499415</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Contact form -->
+        <div class="reveal">
+          <div class="bg-canvas p-8 rounded-2xl border border-border">
+            <h3 class="font-semibold text-ink mb-6">Send a message</h3>
+            <div class="space-y-4">
+              <div>
+                <label class="font-mono text-xs text-muted tracking-label uppercase block mb-1.5">Name</label>
+                <input type="text" id="contact-name" placeholder="Your name"
+                       class="w-full px-4 py-3 bg-surface border border-border rounded-lg text-sm text-ink placeholder-muted focus:outline-none focus:border-accent transition-colors" />
+              </div>
+              <div>
+                <label class="font-mono text-xs text-muted tracking-label uppercase block mb-1.5">Email</label>
+                <input type="email" id="contact-email" placeholder="your@email.com"
+                       class="w-full px-4 py-3 bg-surface border border-border rounded-lg text-sm text-ink placeholder-muted focus:outline-none focus:border-accent transition-colors" />
+              </div>
+              <div>
+                <label class="font-mono text-xs text-muted tracking-label uppercase block mb-1.5">Message</label>
+                <textarea id="contact-message" rows="4" placeholder="What are you working on?"
+                          class="w-full px-4 py-3 bg-surface border border-border rounded-lg text-sm text-ink placeholder-muted focus:outline-none focus:border-accent transition-colors resize-none"></textarea>
+              </div>
+              <button onclick="submitContact()"
+                      class="w-full py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors text-sm">
+                Send Message
+              </button>
+            </div>
+            <p id="contact-msg" class="hidden mt-3 text-center text-sm text-green font-medium"></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════════════ -->
+  <footer class="py-10 bg-ink">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <p class="text-sm text-gray-400 font-mono">© 2024 Yash Panchal. All rights reserved.</p>
+      <nav class="flex flex-wrap gap-6 text-xs text-gray-500">
+        <a href="#about"      class="hover:text-white transition-colors">About</a>
+        <a href="#experience" class="hover:text-white transition-colors">Experience</a>
+        <a href="#projects"   class="hover:text-white transition-colors">Projects</a>
+        <a href="#skills"     class="hover:text-white transition-colors">Skills</a>
+        <a href="#education"  class="hover:text-white transition-colors">Education</a>
+        <a href="#contact"    class="hover:text-white transition-colors">Contact</a>
+      </nav>
+      <div class="flex gap-4">
+        <a href="https://linkedin.com/in/YashliPanchal" target="_blank" rel="noopener"
+           class="w-8 h-8 bg-white/10 hover:bg-accent rounded-lg flex items-center justify-center transition-colors" aria-label="LinkedIn">
+          <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════
+       CASE STUDY MODAL
+  ════════════════════════════════════════════════════ -->
+  <div id="modal-overlay"
+       class="fixed inset-0 z-[100] bg-black/60 hidden items-center justify-center p-4"
+       onclick="closeCase(event)">
+    <div id="modal-content"
+         class="bg-surface w-full max-w-4xl rounded-2xl shadow-2xl relative"
+         onclick="event.stopPropagation()">
+      <button onclick="closeCase()"
+              class="absolute top-5 right-5 w-9 h-9 bg-tag rounded-full flex items-center justify-center hover:bg-border transition-colors z-10"
+              aria-label="Close case study">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <div id="modal-body" class="p-8 md:p-12"></div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════════════════════ -->
+  <script>
+
+    /* ─────────────────────────────────────────────────
+       CASE STUDY DATA
+       All content sourced from Yash Panchal's resume.
+       No metrics have been fabricated. Where exact
+       numbers were not available, qualitative outcomes
+       have been used instead.
+    ──────────────────────────────────────────────────── */
+    const caseStudies = {
+
+      case1: {
+        title: 'Hyper-Casual Runner',
+        genre: 'Hyper-Casual · Endless Runner',
+        platforms: 'Android · iOS',
+        team: 'Studio Team',
+        role: 'Gameplay Programmer / Lead Developer',
+        overview: `An endless runner built for mobile with procedural obstacle generation, dynamic difficulty
+scaling, and a full progression system including collectibles, in-game currency, and daily rewards.
+Monetized with Google AdMob interstitial and rewarded ad formats, with UI designed to adapt
+across multiple Android and iOS screen resolutions.`,
+        problem: `Endless runners spawn and destroy many objects per second — obstacles, coins, VFX. Without
+careful management this creates constant heap allocations on the main thread, which triggers
+the garbage collector mid-session and produces visible frame stutter. On mid-range Android
+devices, even short GC pauses are noticeable to players.`,
+        myRole: `Designed and implemented the core gameplay loop, procedural obstacle spawning, difficulty
+controller, progression systems, UI layout, and AdMob integration. Also responsible for
+performance profiling and optimization passes.`,
+        architecture: `
+┌──────────────────────────────────────────────┐
+│             GameManager                       │
+│                                               │
+│  ┌──────────────┐    ┌─────────────────────┐ │
+│  │ Spawner Sys  │───▶│   Object Pool       │ │
+│  │ (configurable│    │  Obstacles / Coins  │ │
+│  │  patterns)   │    └─────────────────────┘ │
+│  └──────┬───────┘                            │
+│         │                                    │
+│  ┌──────▼──────────────┐                     │
+│  │ Difficulty Controller│                    │
+│  │ (speed, gap, pattern)│                    │
+│  └──────────────────────┘                    │
+│                                              │
+│  ┌──────────────┐  ┌────────────────────┐   │
+│  │  Progression │  │  AdMob (Interstitial│   │
+│  │  (currency,  │  │  + Rewarded Ads)   │   │
+│  │  daily reward│  └────────────────────┘   │
+│  └──────────────┘                            │
+└──────────────────────────────────────────────┘`,
+        implementation: `Object Pooling
+All obstacles, coins, and VFX use typed pools pre-warmed before gameplay begins.
+Objects are returned to the pool on exit rather than destroyed, eliminating runtime heap allocations during active sessions.
+
+Procedural Obstacle Generation
+Spawn patterns and timing are configurable via parameterised settings, allowing design tuning without code changes. Patterns are selected with exclusion logic to prevent immediate repetition.
+
+Dynamic Difficulty Scaling
+Game speed and obstacle gap width are driven by a difficulty controller that ramps progressively as the player advances, keeping sessions challenging without spiking too hard early.
+
+Progression Systems
+Collectibles feed an in-game currency. A daily rewards system encourages return sessions.
+
+Ad Integration
+AdMob interstitial ads shown at natural session break points. Rewarded ads tied to an in-game currency multiplier — player-initiated, never forced.
+
+UI
+Responsive UI layouts designed to support multiple Android and iOS screen resolutions. UI references validated against a device resolution matrix during QA.`,
+        challenges: `1. Runtime GC pressure — obstacle and coin instantiation on the main thread caused frame stutter during dense spawn sequences on mid-range Android devices.
+
+2. Pattern repetition — without exclusion logic, the random spawn selector occasionally produced the same obstacle sequence back-to-back, which felt broken to playtesters.
+
+3. Screen resolution handling — the initial UI broke on devices with non-standard aspect ratios, including certain Android tablets and notched phones.`,
+        solutions: `1. Replaced all runtime instantiation with pre-warmed object pools. Pool sizes were calculated from maximum on-screen count, then built before the first spawn event. GC pressure from spawning was eliminated.
+
+2. Added a recency exclusion list — the last N patterns cannot be selected again — and expanded the pattern library to ensure variety across typical session lengths.
+
+3. Used Unity's Canvas Scaler with a reference resolution and Screen Match Mode set to expand, then tested against a device matrix covering common Android and iOS resolutions.`,
+        metrics: [],
+        results: `• Shipped to Google Play and App Store as part of studio production pipeline
+• Object pooling resolved GC-related frame stutter observed during QA on mid-range Android
+• AdMob interstitial and rewarded ad integration completed and live
+• UI validated across multiple Android and iOS screen resolutions`,
+        lessons: `Object pooling should be the starting architecture for any mobile game that spawns and destroys frequently — not a later optimisation. Retrofitting pools into an existing system is considerably more effort than designing for them from the beginning.`,
+      },
+
+      case2: {
+        title: 'Puzzle Game',
+        genre: 'Puzzle · Level-Based',
+        platforms: 'Android · iOS',
+        team: 'Studio Team',
+        role: 'Gameplay Programmer',
+        overview: `A level-based mobile puzzle game with a scalable difficulty progression and a data-driven
+level system designed to support rapid iteration. Modular gameplay systems support progressive
+mechanic unlocks that introduce new puzzle elements as the player advances.
+Custom 3D assets were created and optimised in Blender for performance-efficient integration.`,
+        problem: `Puzzle games require frequent level tuning — difficulty curves, mechanic introduction timing,
+and content ordering all need iteration that ideally happens without engineer involvement.
+With a hardcoded level system, every design change becomes a code change, which slows
+iteration and creates unnecessary coupling between content and logic.`,
+        myRole: `Designed and implemented the level system architecture, core puzzle mechanics, progression
+and unlock systems, and the Blender-to-Unity asset pipeline for puzzle piece models.`,
+        architecture: `
+┌──────────────────────────────────────────────┐
+│           Level System                        │
+│                                               │
+│  ┌───────────────────────────────────────┐   │
+│  │  LevelData (ScriptableObject)         │   │
+│  │  — mechanic flags                     │   │
+│  │  — difficulty parameters              │   │
+│  │  — unlock conditions                  │   │
+│  └──────────────┬────────────────────────┘   │
+│                 │                             │
+│  ┌──────────────▼────────────────────────┐   │
+│  │       LevelManager                    │   │
+│  │  Reads SO data → configures session   │   │
+│  └──────────────┬────────────────────────┘   │
+│                 │                             │
+│  ┌──────────────▼────────────────────────┐   │
+│  │  Gameplay Systems (Modular)           │   │
+│  │  Mechanic A / Mechanic B / Mechanic C │   │
+│  └───────────────────────────────────────┘   │
+└──────────────────────────────────────────────┘`,
+        implementation: `Data-Driven Level System (ScriptableObjects)
+Each level is defined by a LevelData ScriptableObject containing difficulty parameters, active mechanics, and unlock conditions. The LevelManager reads this data at runtime and configures the session accordingly. Adding or reordering levels requires only asset changes — no code modifications.
+
+Modular Gameplay Systems
+Each puzzle mechanic is implemented as an independent module that can be enabled or disabled per level via the LevelData asset. This allows new mechanics to be introduced progressively without changing existing level logic.
+
+Progressive Unlock System
+Unlock conditions are defined in data rather than code. The progression manager checks conditions at session end and updates player state accordingly.
+
+3D Asset Pipeline
+Puzzle piece models were created in Blender with UV texturing and optimised topology to keep draw calls and texture memory within mobile budgets. Assets were exported and integrated directly into Unity with material configuration handled in-engine.`,
+        challenges: `1. Level configuration coupling — early versions had level parameters hardcoded in MonoBehaviours, making content iteration slow and error-prone.
+
+2. Asset performance — initial Blender exports had higher polygon counts and unoptimised UV layouts that caused visible performance cost on target devices.
+
+3. Mechanic introduction pacing — without a data-driven system, testing different unlock orders required code changes and full recompile cycles.`,
+        solutions: `1. Migrated all level configuration to ScriptableObject assets. Designers can now author and reorder levels without any code changes.
+
+2. Optimised Blender models for mobile: reduced polygon count on non-silhouette geometry, consolidated UV islands to minimise texture atlas waste, and verified within Unity's Frame Debugger.
+
+3. With mechanics defined as flags in ScriptableObjects, unlock ordering became a purely editorial task — testable and reversible without code involvement.`,
+        metrics: [],
+        results: `• Data-driven level system enabled design iteration without code changes
+• Modular mechanic architecture supported addition of new puzzle elements without reworking existing levels
+• 3D assets from Blender integrated within mobile performance budgets
+• Shipped to Google Play and App Store`,
+        lessons: `Separating content from code with ScriptableObjects pays dividends quickly on games with large amounts of authored content. The upfront cost of the system is low; the ongoing saving in iteration time is significant.`,
+      },
+
+      case3: {
+        title: 'Car Game',
+        genre: 'Racing · Endless Road',
+        platforms: 'Android · iOS',
+        team: 'Studio Team',
+        role: 'Gameplay Programmer',
+        overview: `An endless mobile car game featuring procedural road generation on curved paths, a dynamic
+traffic system with density control, and a vehicle progression system including car purchase
+and weapon upgrades. Designed to maintain stable gameplay performance during continuous
+world generation.`,
+        problem: `Endless road games must continuously generate and remove world geometry without the player
+ever seeing a seam or experiencing a frame drop. Naive instantiation and destruction of road
+segments and traffic vehicles introduces both GC pressure and noticeable hitches at segment
+transitions, particularly on lower-end Android devices.`,
+        myRole: `Implemented the road generation system, traffic system, vehicle physics, tuning mechanic,
+and performance optimisation for continuous world streaming.`,
+        architecture: `
+┌──────────────────────────────────────────────┐
+│           World Generation                    │
+│                                               │
+│  ┌────────────────────────────────────────┐  │
+│  │  Road Segment Pool                     │  │
+│  │  — Modular curved segments             │  │
+│  │  — Recycled ahead of player            │  │
+│  └──────────────────┬─────────────────────┘  │
+│                     │                         │
+│  ┌──────────────────▼─────────────────────┐  │
+│  │  Traffic Manager                       │  │
+│  │  — Dynamic density parameter           │  │
+│  │  — Vehicle pool (physics / velocity)   │  │
+│  └──────────────────────────────────────┬─┘  │
+│                                         │     │
+│  ┌──────────────────────────────────────▼┐   │
+│  │  Player Vehicle                       │   │
+│  │  — Physics / velocity movement        │   │
+│  │  — Tuning & upgrade state             │   │
+│  └───────────────────────────────────────┘   │
+└──────────────────────────────────────────────┘`,
+        implementation: `Endless Road Generation
+Modular road segment prefabs are arranged and recycled using a pool. As the player advances, segments behind the camera are repositioned ahead and re-initialised. Curved path handling uses spline-aligned transforms so segments flow smoothly without visible joints.
+
+Traffic System
+Traffic vehicles are drawn from a pool sized to the maximum density setting. A density parameter controls how many vehicles are active at once — tunable in data to vary difficulty or pacing across progression stages. Vehicle movement uses velocity-based approaches suitable for mobile physics budgets.
+
+Vehicle Progression
+A car purchase system manages unlockable vehicles with distinct parameters. A weapon upgrade system layers on top, adding a progression axis beyond raw speed.
+
+Performance
+Segment recycling ahead of player camera eliminates instantiation mid-session. Traffic vehicle pooling follows the same pattern. Combined, these keep GC activity minimal during continuous generation.`,
+        challenges: `1. Segment transitions on curved paths — aligning recycled segments to smooth curved paths without visible pops at the join required careful spline-based positioning.
+
+2. Traffic density vs. performance — higher density settings produced CPU spikes from physics interactions with many active vehicle colliders simultaneously.
+
+3. Progression balance — the car purchase and upgrade system required iteration on price curves and unlock ordering to feel rewarding without gating too early.`,
+        solutions: `1. Segment positioning uses spline-aligned transforms: each segment samples the path curve at its intended position before being placed, ensuring smooth tangent alignment at joins.
+
+2. Traffic colliders are simplified on pooled vehicles — detailed colliders active only for the player vehicle. Traffic vehicles use trigger-based proximity checks, significantly reducing physics solver cost at high density.
+
+3. Progression values were defined in configurable data assets to allow rapid rebalancing without code changes.`,
+        metrics: [],
+        results: `• Continuous road generation maintained stable gameplay performance on target devices
+• Traffic system with configurable density shipped and tuned through production
+• Vehicle purchase and weapon upgrade progression systems implemented and live
+• Shipped to Google Play and App Store`,
+        lessons: `Pooling is essential for any endless game, but the recycling strategy matters as much as the pool itself. Repositioning segments ahead of the player — rather than at the far edge of the visible range — gave enough buffer to avoid any generation hitch reaching the player.`,
+      },
+
+      case4: {
+        title: 'AR Marker-Based App',
+        genre: 'AR Application · Educational',
+        platforms: 'Android · iOS',
+        team: 'Studio Team',
+        role: 'AR Developer',
+        overview: `A marker-based augmented reality application built with Unity and Vuforia for Android and iOS.
+The app uses image recognition to trigger interactive educational content — videos, 3D models,
+animations, and particle effects — tied to physical printed markers. Designed to be used by
+students and educators as an interactive learning companion.`,
+        problem: `Marker-based AR applications depend on tracking reliability — if the camera loses the marker,
+content disappears or judders, which breaks the educational experience. Additionally,
+dynamically loading different content types (video, 3D model, animation, particles) from
+a single marker trigger adds complexity to state management and memory use.`,
+        myRole: `Implemented the Vuforia marker recognition setup, dynamic content switching system,
+UI layer, native media playback integration, and tracking optimisation for both Android and iOS.`,
+        architecture: `
+┌──────────────────────────────────────────────┐
+│           AR Session                          │
+│                                               │
+│  ┌────────────────────────────────────────┐  │
+│  │  Vuforia Image Target                  │  │
+│  │  — Marker database                     │  │
+│  │  — Found / Lost callbacks              │  │
+│  └───────────────┬────────────────────────┘  │
+│                  │                            │
+│  ┌───────────────▼────────────────────────┐  │
+│  │  Content Controller                    │  │
+│  │  — Reads marker ID                    │  │
+│  │  — Loads appropriate content type     │  │
+│  │    (Video / 3D Model / Anim / VFX)    │  │
+│  └───────────────┬────────────────────────┘  │
+│                  │                            │
+│  ┌───────────────▼────────────────────────┐  │
+│  │  Content Modules                       │  │
+│  │  VideoPlayer  │  ModelLoader  │  VFX   │  │
+│  └───────────────────────────────────────-┘  │
+│                                              │
+│  ┌────────────────────────────────────────┐  │
+│  │  UI Layer (marker prompt, controls)    │  │
+│  └────────────────────────────────────────┘  │
+└──────────────────────────────────────────────┘`,
+        implementation: `Vuforia Integration
+Image target database configured in Vuforia Developer Portal and imported into Unity. Each physical marker maps to a unique image target ID. DefaultTrackableEventHandler extended to call the Content Controller on Found and Lost events.
+
+Dynamic Content Switching
+A Content Controller reads the marker ID and activates the corresponding content module: Unity VideoPlayer for video content, instantiated prefabs for 3D models with animation controllers, and ParticleSystem components for effects. Inactive modules are disabled rather than destroyed to avoid re-load cost on re-detection.
+
+Native Media Playback
+Video content uses Unity's VideoPlayer component with platform-specific transcoded files (H.264 for broad compatibility). On iOS, native playback via AVFoundation handles format support not available through Unity's managed player.
+
+Tracking Optimisation
+Vuforia tracking mode set to optimize for image targets specifically. Marker image contrast and feature density were reviewed during QA to ensure reliable detection under variable lighting conditions.
+
+UI
+A simple prompt guides users to point the camera at the correct marker. Playback controls (play, pause, back) overlay the AR content where relevant.`,
+        challenges: `1. Tracking instability under low-light conditions — markers lost tracking more frequently in classroom environments with overhead fluorescent lighting or shadows.
+
+2. Content switching latency — loading a 3D model or video on marker detection produced a short visible delay before content appeared.
+
+3. iOS video playback — certain video formats did not play back correctly through Unity's VideoPlayer on iOS without additional transcoding.`,
+        solutions: `1. Reviewed and improved the physical marker designs — increased contrast and feature density in the marker images, which significantly improved Vuforia tracking confidence across lighting conditions.
+
+2. Pre-loaded all content modules at app launch and kept inactive modules disabled. On detection, the relevant module is simply enabled rather than loaded, eliminating the initialisation delay.
+
+3. Videos were transcoded to H.264 with platform-specific settings, and an iOS-specific native playback path was implemented where Unity's VideoPlayer fell short.`,
+        metrics: [],
+        results: `• Marker-based AR application shipped to Google Play and App Store
+• Reliable marker detection achieved across tested classroom lighting conditions
+• Dynamic content switching (video, 3D, animation, particles) functional per marker
+• Native iOS media playback integrated for format compatibility`,
+        lessons: `AR marker quality is as important as the code. Spending time on the physical marker design — contrast, feature density, print quality — has more impact on tracking reliability than any SDK-level setting. The marker is part of the system.`,
+      },
+
+    };
+
+
+    /* ─────────────────────────────────────────────────
+       MODAL
+    ──────────────────────────────────────────────────── */
+    function openCase(id) {
+      const cs = caseStudies[id];
+      if (!cs) return;
+
+      document.getElementById('modal-body').innerHTML = `
+        <div class="mb-10">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="font-mono text-xs px-3 py-1 bg-accent-light text-accent rounded-full font-semibold">${cs.genre}</span>
+            <span class="font-mono text-xs px-3 py-1 bg-tag text-muted rounded-full">${cs.platforms}</span>
+            <span class="font-mono text-xs px-3 py-1 bg-tag text-muted rounded-full">${cs.team}</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-ink mb-2">${cs.title}</h2>
+          <p class="font-mono text-sm text-accent">${cs.role}</p>
+        </div>
+
+        <div class="mb-10">
+          <p class="font-mono text-xs text-muted tracking-label uppercase mb-3">Overview</p>
+          <p class="text-muted leading-relaxed whitespace-pre-line">${cs.overview}</p>
+        </div>
+
+        <div class="mb-10">
+          <p class="font-mono text-xs text-muted tracking-label uppercase mb-3">Problem</p>
+          <p class="text-muted leading-relaxed whitespace-pre-line">${cs.problem}</p>
+        </div>
+
+        <div class="mb-10">
+          <p class="font-mono text-xs text-muted tracking-label uppercase mb-3">My Role</p>
+          <p class="text-muted leading-relaxed whitespace-pre-line">${cs.myRole}</p>
+        </div>
+
+        <div class="mb-10">
+          <p class="font-mono text-xs text-muted tracking-label uppercase mb-3">System Architecture</p>
+          <div class="arch-diagram">${cs.architecture}</div>
+          <p class="text-xs text-muted mt-2 italic">Replace with a visual diagram (e.g. Excalidraw) for your final portfolio.</p>
+        </div>
+
+        <div class="mb-10">
+          <p class="font-mono text-xs text-muted tracking-label uppercase mb-3">Technical Implementation</p>
+          <div class="text-muted leading-relaxed text-sm whitespace-pre-wrap">${cs.implementation}</div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-10">
+          <div>
+            <p class="font-mono text-xs text-muted tracking-label uppercase mb-3">Challenges</p>
+            <div class="text-muted leading-relaxed text-sm whitespace-pre-wrap">${cs.challenges}</div>
+          </div>
+          <div>
+            <p class="font-mono text-xs text-muted tracking-label uppercase mb-3">Solutions</p>
+            <div class="text-muted leading-relaxed text-sm whitespace-pre-wrap">${cs.solutions}</div>
+          </div>
+        </div>
+
+        <div class="mb-10 p-6 bg-accent-light rounded-2xl border border-accent/20">
+          <p class="font-mono text-xs text-accent tracking-label uppercase mb-3">Results</p>
+          <div class="text-ink leading-relaxed text-sm whitespace-pre-wrap font-medium">${cs.results}</div>
+        </div>
+
+        <div>
+          <p class="font-mono text-xs text-muted tracking-label uppercase mb-3">Lessons Learned</p>
+          <p class="text-muted leading-relaxed text-sm">${cs.lessons}</p>
+        </div>
+      `;
+
+      const overlay = document.getElementById('modal-overlay');
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCase(event) {
+      if (event && event.target !== document.getElementById('modal-overlay')) return;
+      const overlay = document.getElementById('modal-overlay');
+      overlay.classList.add('hidden');
+      overlay.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modal-overlay').addEventListener('click', function(e) {
+      if (e.target === this) closeCase(e);
+    });
+
+    document.querySelector('#modal-content button[onclick="closeCase()"]')?.addEventListener('click', () => {
+      document.getElementById('modal-overlay').classList.add('hidden');
+      document.getElementById('modal-overlay').classList.remove('flex');
+      document.body.style.overflow = '';
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('modal-overlay').classList.add('hidden');
+        document.getElementById('modal-overlay').classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    });
+
+
+    /* ─────────────────────────────────────────────────
+       NAVBAR
+    ──────────────────────────────────────────────────── */
+    const navbar   = document.getElementById('navbar');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function updateNav() {
+      if (window.scrollY > 20) {
+        navbar.classList.add('bg-surface/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-border');
+      } else {
+        navbar.classList.remove('bg-surface/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-border');
+      }
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 120) current = section.id;
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+
+    /* ─────────────────────────────────────────────────
+       MOBILE MENU
+    ──────────────────────────────────────────────────── */
+    const mobileMenuBtn  = document.getElementById('mobile-menu-btn');
+    const mobileMenu     = document.getElementById('mobile-menu');
+    const menuIconBars   = document.getElementById('menu-icon-bars');
+    const menuIconClose  = document.getElementById('menu-icon-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const open = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', open);
+      menuIconBars.classList.toggle('hidden', !open);
+      menuIconClose.classList.toggle('hidden', open);
+    });
+
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIconBars.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+      });
+    });
+
+
+    /* ─────────────────────────────────────────────────
+       SCROLL REVEAL
+    ──────────────────────────────────────────────────── */
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const siblings = Array.from(entry.target.parentElement?.children || []);
+          const idx = siblings.indexOf(entry.target);
+          entry.target.style.transitionDelay = `${idx * 60}ms`;
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+
+    /* ─────────────────────────────────────────────────
+       CONTACT FORM STUB
+       REPLACE: Wire to Formspree or EmailJS for real
+       form submission:
+       https://formspree.io  |  https://emailjs.com
+    ──────────────────────────────────────────────────── */
+    function submitContact() {
+      const name    = document.getElementById('contact-name').value.trim();
+      const email   = document.getElementById('contact-email').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+      const msgEl   = document.getElementById('contact-msg');
+
+      if (!name || !email || !message) {
+        msgEl.textContent = 'Please fill in all fields.';
+        msgEl.className = 'mt-3 text-center text-sm text-amber font-medium';
+        msgEl.classList.remove('hidden');
+        return;
+      }
+
+      // REPLACE: Add your real submission logic here
+      msgEl.textContent = "✓ Message sent! I'll get back to you within 24 hours.";
+      msgEl.className = 'mt-3 text-center text-sm text-green font-medium';
+      msgEl.classList.remove('hidden');
+      document.getElementById('contact-name').value    = '';
+      document.getElementById('contact-email').value   = '';
+      document.getElementById('contact-message').value = '';
+    }
+
+  </script>
+
+</body>
+</html>
