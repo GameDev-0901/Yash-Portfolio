@@ -6,9 +6,6 @@
   <title>Yash Panchal — Unity Game Developer</title>
   <meta name="description" content="Unity Game Developer with 2.5 years of experience building mobile games for Android and iOS. Specializing in gameplay systems, UI implementation, and mobile optimization." />
   <meta name="author" content="Yash Panchal" />
-  <meta property="og:title" content="Yash Panchal — Unity Game Developer" />
-  <meta property="og:description" content="Unity Game Developer with 2.5 years of experience building mobile games for Android and iOS." />
-  <meta property="og:type" content="website" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,14 +32,8 @@
               dark:    '#4338CA',
               light:   '#EEF2FF',
             },
-            green: {
-              DEFAULT: '#059669',
-              light:   '#ECFDF5',
-            },
-            amber: {
-              DEFAULT: '#D97706',
-              light:   '#FFFBEB',
-            },
+            green:  { DEFAULT: '#059669', light: '#ECFDF5' },
+            amber:  { DEFAULT: '#D97706', light: '#FFFBEB' },
           },
           letterSpacing: { label: '0.06em' },
         }
@@ -78,14 +69,9 @@
       transform: translateY(20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .project-card {
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
-    }
+    .project-card { transition: box-shadow 0.2s ease, transform 0.2s ease; }
     .project-card:hover {
       box-shadow: 0 12px 32px rgba(0,0,0,0.10);
       transform: translateY(-3px);
@@ -143,6 +129,21 @@
       background: linear-gradient(90deg, #4F46E5, #E5E7EB);
     }
 
+    /* Profile photo styling */
+    .profile-photo-wrap {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #F3F4F6;
+      border: 1px solid #E5E7EB;
+    }
+    .profile-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
     *:focus-visible {
       outline: 2px solid #4F46E5;
       outline-offset: 3px;
@@ -158,9 +159,9 @@
 
 <body class="antialiased">
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        NAVIGATION
-  ════════════════════════════════════════════════════ -->
+  ════════════════════════════════════════════════ -->
   <header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
       <a href="#hero" class="font-mono text-sm font-500 text-ink tracking-label">YP<span class="text-accent">.</span></a>
@@ -174,8 +175,7 @@
         <li><a href="#contact"    class="nav-link hover:text-ink transition-colors">Contact</a></li>
       </ul>
 
-      <!-- REPLACE: Link to your actual resume PDF -->
-      <a href="#"
+      <a href="resume.pdf" target="_blank"
          class="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-dark transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
@@ -199,15 +199,15 @@
         <li><a href="#skills"     class="mobile-nav-link block hover:text-ink transition-colors">Skills</a></li>
         <li><a href="#education"  class="mobile-nav-link block hover:text-ink transition-colors">Education</a></li>
         <li><a href="#contact"    class="mobile-nav-link block hover:text-ink transition-colors">Contact</a></li>
-        <li><a href="#" class="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-lg w-fit text-sm">Resume ↓</a></li>
+        <li><a href="resume.pdf" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-lg w-fit text-sm">Resume ↓</a></li>
       </ul>
     </div>
   </header>
 
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        HERO
-  ════════════════════════════════════════════════════ -->
+  ════════════════════════════════════════════════ -->
   <section id="hero" class="hero-grid min-h-screen flex items-center pt-20">
     <div class="max-w-6xl mx-auto px-6 py-24 w-full">
       <div class="max-w-3xl">
@@ -226,7 +226,6 @@
           shipping titles for Android and iOS.
         </p>
 
-        <!-- Stat strip -->
         <div class="flex flex-wrap gap-8 mb-12 reveal">
           <div>
             <p class="text-3xl font-bold text-ink">2.5</p>
@@ -249,7 +248,6 @@
           </div>
         </div>
 
-        <!-- Platform tags -->
         <div class="flex flex-wrap gap-2 mb-12 reveal">
           <span class="font-mono text-xs px-3 py-1.5 bg-tag text-muted rounded-full">Android</span>
           <span class="font-mono text-xs px-3 py-1.5 bg-tag text-muted rounded-full">iOS</span>
@@ -258,7 +256,6 @@
           <span class="font-mono text-xs px-3 py-1.5 bg-tag text-muted rounded-full">AR (Vuforia)</span>
         </div>
 
-        <!-- CTAs -->
         <div class="flex flex-wrap gap-4 reveal">
           <a href="#projects"
              class="px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-dark transition-colors text-sm">
@@ -268,8 +265,7 @@
              class="px-6 py-3 border border-border bg-surface text-ink font-semibold rounded-lg hover:border-accent hover:text-accent transition-colors text-sm">
             Get in Touch
           </a>
-          <!-- REPLACE: Link to your actual resume PDF -->
-          <a href="#"
+          <a href="resume.pdf" target="_blank"
              class="px-6 py-3 border border-border bg-surface text-ink font-semibold rounded-lg hover:border-accent hover:text-accent transition-colors text-sm inline-flex items-center gap-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
@@ -287,9 +283,9 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        ABOUT
-  ════════════════════════════════════════════════════ -->
+  ════════════════════════════════════════════════ -->
   <section id="about" class="py-24 bg-surface">
     <div class="max-w-6xl mx-auto px-6">
 
@@ -300,9 +296,8 @@
 
         <!-- Left: photo + quick facts -->
         <div class="reveal">
-          <!-- REPLACE: Replace with your actual photo -->
-          <div class="w-full aspect-[4/3] bg-tag rounded-2xl mb-8 overflow-hidden flex items-center justify-center border border-border">
-            <span class="text-muted text-sm font-mono">[ Your Photo Here ]</span>
+          <div class="profile-photo-wrap w-full aspect-[3/4] mb-8">
+            <img src="Profile-Photo.png" alt="Yash Panchal — Unity Game Developer" />
           </div>
 
           <div class="grid grid-cols-2 gap-4">
@@ -333,15 +328,15 @@
           <p class="text-lg text-muted leading-relaxed mb-6">
             I'm a Unity developer focused on mobile — building gameplay systems,
             UI flows, and AR experiences for Android and iOS. Over 2.5 years at
-            The Intellify, I've worked across hypercasual, puzzle, car, and AR
-            projects, taking features from design all the way through to store deployment.
+            The Intellify, I've contributed to games across hypercasual, puzzle, car,
+            and AR genres, taking features from design through to store deployment.
           </p>
 
           <p class="text-lg text-muted leading-relaxed mb-8">
-            Working across multiple game genres in a professional studio has taught me
+            Working across multiple genres in a professional studio has taught me
             to write code that holds up — modular, readable, and structured with OOP
-            principles and design patterns. I care about performance because our players
-            are on real mid-range Android devices, and every frame counts.
+            principles and design patterns. I care about performance because real
+            players are on real mid-range Android devices, and every frame counts.
           </p>
 
           <blockquote class="border-l-4 border-accent pl-6 py-2 mb-8">
@@ -364,9 +359,9 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        EXPERIENCE
-  ════════════════════════════════════════════════════ -->
+  ════════════════════════════════════════════════ -->
   <section id="experience" class="py-24 bg-canvas">
     <div class="max-w-6xl mx-auto px-6">
 
@@ -375,7 +370,7 @@
 
       <div class="relative pl-8 border-l-2 border-border space-y-14">
 
-        <!-- Role 1: Unity Game Developer -->
+        <!-- Role 1 -->
         <div class="relative reveal">
           <div class="timeline-dot"></div>
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
@@ -401,7 +396,7 @@
           </div>
         </div>
 
-        <!-- Role 2: Unity Developer Intern -->
+        <!-- Role 2 -->
         <div class="relative reveal">
           <div class="timeline-dot"></div>
           <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
@@ -413,7 +408,7 @@
           </div>
           <ul class="space-y-2 text-muted text-sm leading-relaxed mb-4">
             <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Assisted in Unity-based game and application development, building practical foundations in C#, gameplay programming, UI handling, and debugging.</span></li>
-            <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Gained hands-on experience in AR development, including marker-based interactions and 3D content integration using Vuforia.</span></li>
+            <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Gained hands-on experience in AR development including marker-based interactions and 3D content integration using Vuforia.</span></li>
             <li class="flex gap-2"><span class="text-accent mt-1">→</span><span>Contributed to feature implementation while following collaborative workflows including version control and mobile application deployment processes.</span></li>
           </ul>
           <div class="flex flex-wrap gap-2">
@@ -431,60 +426,67 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        PROJECTS
-  ════════════════════════════════════════════════════ -->
+       Order: 1 Car (Speed Nation) · 2 Puzzle (What The Pool)
+              3 Hyper-Casual (Spikes) · 4 AR Learning
+       Note: all projects were contributed to at The Intellify.
+  ════════════════════════════════════════════════ -->
   <section id="projects" class="py-24 bg-surface">
     <div class="max-w-6xl mx-auto px-6">
 
       <p class="font-mono text-xs text-accent tracking-label uppercase mb-3 reveal">Projects</p>
-      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16">
-        <h2 class="text-4xl font-bold text-ink reveal">Games I've shipped.</h2>
-        <p class="text-sm text-muted reveal max-w-sm text-right hidden sm:block">
-          Click any card to open the full case study with architecture details and technical decisions.
-        </p>
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-4">
+        <h2 class="text-4xl font-bold text-ink reveal">Games I've contributed to.</h2>
       </div>
+      <!-- Attribution note -->
+      <p class="text-sm text-muted mb-16 reveal max-w-2xl">
+        These titles were developed at <span class="font-medium text-ink">The Intellify</span>. I contributed as a gameplay programmer across gameplay systems, UI, optimization, and feature integration.
+        Click any card to read the full technical breakdown.
+      </p>
 
-      <!-- Featured: Hyper-Casual Runner (large card) -->
+      <!-- ── Featured: Speed Nation (project1) ── -->
       <div class="group project-card bg-canvas rounded-2xl border border-border overflow-hidden mb-8 cursor-pointer reveal"
            onclick="openCase('case1')">
         <div class="grid md:grid-cols-2">
-          <div class="aspect-video md:aspect-auto bg-accent-light flex items-center justify-center border-b md:border-b-0 md:border-r border-border min-h-48 md:min-h-80">
-            <!-- REPLACE: <img src="your-screenshot.jpg" alt="Hyper-Casual Runner" class="w-full h-full object-cover" /> -->
-            <span class="font-mono text-sm text-accent text-center px-4">[ Game Screenshot / GIF ]<br/>Recommended: 800×450px</span>
+          <!-- Thumbnail -->
+          <div class="relative overflow-hidden border-b md:border-b-0 md:border-r border-border" style="min-height:320px;">
+            <img src="project1.webp" alt="Speed Nation — Car Game"
+                 class="w-full h-full object-cover object-center absolute inset-0" />
           </div>
+          <!-- Details -->
           <div class="p-8 md:p-10 flex flex-col justify-between">
             <div>
               <div class="flex flex-wrap gap-2 mb-4">
-                <span class="font-mono text-xs px-2.5 py-1 bg-accent-light text-accent rounded-full font-semibold">Hyper-Casual</span>
+                <span class="font-mono text-xs px-2.5 py-1 bg-accent-light text-accent rounded-full font-semibold">Racing</span>
                 <span class="font-mono text-xs px-2.5 py-1 bg-tag text-muted rounded-full">Android · iOS</span>
-                <span class="font-mono text-xs px-2.5 py-1 bg-tag text-muted rounded-full">Endless Runner</span>
+                <span class="font-mono text-xs px-2.5 py-1 bg-tag text-muted rounded-full">Endless Road</span>
               </div>
-              <h3 class="text-2xl font-bold text-ink mb-3">Hyper-Casual Runner</h3>
+              <h3 class="text-2xl font-bold text-ink mb-3">Speed Nation</h3>
               <p class="text-muted text-sm leading-relaxed mb-6">
-                An endless runner featuring procedural obstacle generation, dynamic difficulty
-                scaling, collectibles, in-game currency, and a daily rewards system.
-                Monetized with AdMob interstitial and rewarded ads, with responsive UI
-                designed across multiple screen resolutions.
+                An endless mobile racing game featuring modular road generation on curved
+                paths, a dynamic traffic system with density control, and a vehicle
+                progression system with car purchase and weapon upgrades. Designed for
+                stable performance during continuous world generation.
               </p>
 
               <div class="flex flex-wrap gap-2 mb-6">
-                <span class="metric-pill bg-accent-light text-accent">Procedural Generation</span>
-                <span class="metric-pill bg-green-light text-green">AdMob Integrated</span>
-                <span class="metric-pill bg-amber-light text-amber">Dynamic Difficulty</span>
+                <span class="metric-pill bg-accent-light text-accent">Modular Road Gen</span>
+                <span class="metric-pill bg-green-light text-green">Physics-Based Traffic</span>
+                <span class="metric-pill bg-amber-light text-amber">Car Progression</span>
               </div>
 
               <div class="flex flex-wrap gap-2 mb-6">
                 <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Unity</span>
                 <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">C#</span>
-                <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">AdMob</span>
-                <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Firebase</span>
+                <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Physics</span>
                 <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Object Pooling</span>
+                <span class="font-mono text-xs px-2 py-1 bg-tag text-muted rounded">Firebase</span>
               </div>
 
               <div class="p-4 bg-accent-light rounded-xl border-l-4 border-accent mb-6">
                 <p class="font-mono text-xs text-accent tracking-label uppercase mb-1">Key Technical Contribution</p>
-                <p class="text-sm text-ink font-medium">Implemented an object pooling system for obstacle spawning, eliminating runtime allocations and GC pressure during gameplay.</p>
+                <p class="text-sm text-ink font-medium">Developed modular segment pooling for the endless road system, maintaining stable runtime performance during continuous world generation without GC-related hitches.</p>
               </div>
             </div>
 
@@ -501,27 +503,27 @@
       <!-- Project Grid -->
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        <!-- Puzzle Game -->
+        <!-- ── Project 2: What The Pool (Puzzle) ── -->
         <div class="project-card bg-canvas rounded-2xl border border-border overflow-hidden cursor-pointer reveal"
              onclick="openCase('case2')">
-          <div class="aspect-video bg-tag flex items-center justify-center border-b border-border">
-            <!-- REPLACE: <img src="puzzle-screenshot.jpg" alt="Puzzle Game" class="w-full h-full object-cover" /> -->
-            <span class="font-mono text-xs text-muted text-center px-3">[ Screenshot ]</span>
+          <div class="relative overflow-hidden border-b border-border" style="aspect-ratio:16/9;">
+            <img src="project2.webp" alt="What The Pool — Puzzle Game"
+                 class="w-full h-full object-cover object-center" />
           </div>
           <div class="p-6">
             <div class="flex flex-wrap gap-1.5 mb-3">
               <span class="font-mono text-xs px-2 py-0.5 bg-accent-light text-accent rounded-full font-semibold">Puzzle</span>
               <span class="font-mono text-xs px-2 py-0.5 bg-tag text-muted rounded-full">Android · iOS</span>
             </div>
-            <h3 class="text-lg font-bold text-ink mb-2">Puzzle Game</h3>
+            <h3 class="text-lg font-bold text-ink mb-2">What The Pool!</h3>
             <p class="text-muted text-xs leading-relaxed mb-4">
-              Level-based puzzle game with a scalable difficulty system and data-driven level
-              design. Modular systems support progressive unlocks and mechanic variation.
-              Custom 3D assets created and optimized in Blender.
+              Level-based puzzle game with scalable difficulty and a data-driven level
+              system designed for rapid iteration. Modular systems support progressive
+              mechanic unlocks. Custom 3D assets created and optimized in Blender.
             </p>
             <div class="flex flex-wrap gap-1.5 mb-4">
               <span class="metric-pill bg-accent-light text-accent text-xs">Data-Driven Levels</span>
-              <span class="metric-pill bg-green-light text-green text-xs">Blender Assets</span>
+              <span class="metric-pill bg-green-light text-green text-xs">ScriptableObjects</span>
             </div>
             <div class="flex flex-wrap gap-1.5 mb-5">
               <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">Unity</span>
@@ -530,7 +532,7 @@
               <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">ScriptableObjects</span>
             </div>
             <div class="p-3 bg-accent-light rounded-lg mb-5">
-              <p class="text-xs text-ink font-medium"><span class="text-accent font-semibold">Key Contribution:</span> Built a data-driven level system using ScriptableObjects, enabling rapid designer iteration without code changes.</p>
+              <p class="text-xs text-ink font-medium"><span class="text-accent font-semibold">Key Contribution:</span> Built a data-driven level system using ScriptableObjects enabling rapid designer iteration without code changes.</p>
             </div>
             <button onclick="event.stopPropagation(); openCase('case2')"
                     class="w-full py-2 text-sm font-semibold text-accent border border-accent rounded-lg hover:bg-accent hover:text-white transition-colors">
@@ -539,34 +541,36 @@
           </div>
         </div>
 
-        <!-- Car Game -->
+        <!-- ── Project 3: Spikes (Hyper-Casual) ── -->
         <div class="project-card bg-canvas rounded-2xl border border-border overflow-hidden cursor-pointer reveal"
              onclick="openCase('case3')">
-          <div class="aspect-video bg-tag flex items-center justify-center border-b border-border">
-            <span class="font-mono text-xs text-muted text-center px-3">[ Screenshot ]</span>
+          <div class="relative overflow-hidden border-b border-border" style="aspect-ratio:16/9;">
+            <img src="project3.webp" alt="Spikes — Hyper-Casual Game"
+                 class="w-full h-full object-cover object-top" />
           </div>
           <div class="p-6">
             <div class="flex flex-wrap gap-1.5 mb-3">
-              <span class="font-mono text-xs px-2 py-0.5 bg-accent-light text-accent rounded-full font-semibold">Racing</span>
+              <span class="font-mono text-xs px-2 py-0.5 bg-accent-light text-accent rounded-full font-semibold">Hyper-Casual</span>
               <span class="font-mono text-xs px-2 py-0.5 bg-tag text-muted rounded-full">Android · iOS</span>
             </div>
-            <h3 class="text-lg font-bold text-ink mb-2">Car Game</h3>
+            <h3 class="text-lg font-bold text-ink mb-2">Spikes</h3>
             <p class="text-muted text-xs leading-relaxed mb-4">
-              Endless road game with modular track generation on curved paths, a traffic
-              system with dynamic density, and car tuning mechanics including vehicle
-              purchase and weapon upgrade progression.
+              Endless runner with procedural obstacle generation, dynamic difficulty
+              scaling, collectibles, in-game currency, and a daily rewards system.
+              Monetized with AdMob interstitial and rewarded ads across Android and iOS.
             </p>
             <div class="flex flex-wrap gap-1.5 mb-4">
-              <span class="metric-pill bg-accent-light text-accent text-xs">Modular Track Gen</span>
-              <span class="metric-pill bg-green-light text-green text-xs">Physics-Based</span>
+              <span class="metric-pill bg-accent-light text-accent text-xs">Procedural Gen</span>
+              <span class="metric-pill bg-green-light text-green text-xs">AdMob Integrated</span>
             </div>
             <div class="flex flex-wrap gap-1.5 mb-5">
               <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">Unity</span>
               <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">C#</span>
-              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">Physics</span>
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">AdMob</span>
+              <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">Object Pooling</span>
             </div>
             <div class="p-3 bg-accent-light rounded-lg mb-5">
-              <p class="text-xs text-ink font-medium"><span class="text-accent font-semibold">Key Contribution:</span> Developed endless road generation using modular segment pooling to maintain stable performance during continuous world generation.</p>
+              <p class="text-xs text-ink font-medium"><span class="text-accent font-semibold">Key Contribution:</span> Implemented object pooling for obstacle spawning, eliminating runtime GC pressure and mid-session frame stutter.</p>
             </div>
             <button onclick="event.stopPropagation(); openCase('case3')"
                     class="w-full py-2 text-sm font-semibold text-accent border border-accent rounded-lg hover:bg-accent hover:text-white transition-colors">
@@ -575,22 +579,23 @@
           </div>
         </div>
 
-        <!-- AR App -->
+        <!-- ── Project 4: AR Learning ── -->
         <div class="project-card bg-canvas rounded-2xl border border-border overflow-hidden cursor-pointer reveal"
              onclick="openCase('case4')">
-          <div class="aspect-video bg-tag flex items-center justify-center border-b border-border">
-            <span class="font-mono text-xs text-muted text-center px-3">[ Screenshot ]</span>
+          <div class="relative overflow-hidden border-b border-border" style="aspect-ratio:16/9;">
+            <img src="project4.png" alt="AR Learning — AR Marker-Based App"
+                 class="w-full h-full object-cover object-center" />
           </div>
           <div class="p-6">
             <div class="flex flex-wrap gap-1.5 mb-3">
               <span class="font-mono text-xs px-2 py-0.5 bg-accent-light text-accent rounded-full font-semibold">AR Application</span>
               <span class="font-mono text-xs px-2 py-0.5 bg-tag text-muted rounded-full">Android · iOS</span>
             </div>
-            <h3 class="text-lg font-bold text-ink mb-2">AR Marker-Based App</h3>
+            <h3 class="text-lg font-bold text-ink mb-2">AR Learning</h3>
             <p class="text-muted text-xs leading-relaxed mb-4">
-              Educational AR application using Vuforia marker recognition to trigger
-              interactive content — videos, 3D models, animations, and particle effects —
-              with optimized tracking and native media playback.
+              Educational AR app using Vuforia marker recognition to trigger interactive
+              content — 3D models, videos, animations, and particle effects — for young
+              learners. Optimized tracking with native media playback on Android and iOS.
             </p>
             <div class="flex flex-wrap gap-1.5 mb-4">
               <span class="metric-pill bg-accent-light text-accent text-xs">Vuforia AR</span>
@@ -602,7 +607,7 @@
               <span class="font-mono text-xs px-1.5 py-0.5 bg-tag text-muted rounded">C#</span>
             </div>
             <div class="p-3 bg-accent-light rounded-lg mb-5">
-              <p class="text-xs text-ink font-medium"><span class="text-accent font-semibold">Key Contribution:</span> Implemented image-recognition-driven content switching — a single marker surface dynamically loads videos, 3D models, and particle systems on demand.</p>
+              <p class="text-xs text-ink font-medium"><span class="text-accent font-semibold">Key Contribution:</span> Built the marker-driven content switching system that dynamically loads 3D models, videos, and particles on detection.</p>
             </div>
             <button onclick="event.stopPropagation(); openCase('case4')"
                     class="w-full py-2 text-sm font-semibold text-accent border border-accent rounded-lg hover:bg-accent hover:text-white transition-colors">
@@ -616,9 +621,9 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        SKILLS
-  ════════════════════════════════════════════════════ -->
+  ════════════════════════════════════════════════ -->
   <section id="skills" class="py-24 bg-canvas">
     <div class="max-w-6xl mx-auto px-6">
 
@@ -627,7 +632,6 @@
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-        <!-- Languages & Engine -->
         <div class="p-6 bg-surface rounded-2xl border border-border reveal">
           <div class="w-8 h-8 bg-accent-light rounded-lg flex items-center justify-center mb-4">
             <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -643,7 +647,6 @@
           </ul>
         </div>
 
-        <!-- Systems & Architecture -->
         <div class="p-6 bg-surface rounded-2xl border border-border reveal">
           <div class="w-8 h-8 bg-accent-light rounded-lg flex items-center justify-center mb-4">
             <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -660,7 +663,6 @@
           </ul>
         </div>
 
-        <!-- Tools & Services -->
         <div class="p-6 bg-surface rounded-2xl border border-border reveal">
           <div class="w-8 h-8 bg-accent-light rounded-lg flex items-center justify-center mb-4">
             <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -674,13 +676,12 @@
             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Firebase (Analytics, Crashlytics)</li>
             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Google AdMob</li>
             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Visual Studio</li>
-            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Blender (3D Modelling, UV Texturing)</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Blender (Modelling, UV Texturing)</li>
             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Figma</li>
             <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-accent rounded-full flex-shrink-0"></span>Vuforia (AR)</li>
           </ul>
         </div>
 
-        <!-- Platforms -->
         <div class="p-6 bg-surface rounded-2xl border border-border reveal">
           <div class="w-8 h-8 bg-accent-light rounded-lg flex items-center justify-center mb-4">
             <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -699,9 +700,9 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        EDUCATION
-  ════════════════════════════════════════════════════ -->
+  ════════════════════════════════════════════════ -->
   <section id="education" class="py-24 bg-surface">
     <div class="max-w-6xl mx-auto px-6">
 
@@ -731,9 +732,9 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        DEVELOPMENT PROCESS
-  ════════════════════════════════════════════════════ -->
+  ════════════════════════════════════════════════ -->
   <section id="process" class="py-24 bg-canvas">
     <div class="max-w-6xl mx-auto px-6">
 
@@ -741,7 +742,6 @@
       <h2 class="text-4xl font-bold text-ink mb-16 reveal">How I build.</h2>
 
       <div class="hidden md:flex items-start gap-0 reveal">
-
         <div class="flex-1 text-center px-3">
           <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">1</div>
           <div class="w-px h-4 bg-border mx-auto mb-4"></div>
@@ -749,7 +749,6 @@
           <p class="text-xs text-muted leading-relaxed">Understand scope, define gameplay systems, and plan modular architecture before writing any code.</p>
         </div>
         <div class="process-connector mt-5"></div>
-
         <div class="flex-1 text-center px-3">
           <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">2</div>
           <div class="w-px h-4 bg-border mx-auto mb-4"></div>
@@ -757,7 +756,6 @@
           <p class="text-xs text-muted leading-relaxed">Build the core gameplay loop first. Validate feel and mechanics before adding systems or content.</p>
         </div>
         <div class="process-connector mt-5"></div>
-
         <div class="flex-1 text-center px-3">
           <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">3</div>
           <div class="w-px h-4 bg-border mx-auto mb-4"></div>
@@ -765,7 +763,6 @@
           <p class="text-xs text-muted leading-relaxed">Feature-by-feature implementation using OOP principles, design patterns, and version control.</p>
         </div>
         <div class="process-connector mt-5"></div>
-
         <div class="flex-1 text-center px-3">
           <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">4</div>
           <div class="w-px h-4 bg-border mx-auto mb-4"></div>
@@ -773,7 +770,6 @@
           <p class="text-xs text-muted leading-relaxed">Device testing on real Android and iOS hardware, crash monitoring via Firebase Crashlytics.</p>
         </div>
         <div class="process-connector mt-5"></div>
-
         <div class="flex-1 text-center px-3">
           <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">5</div>
           <div class="w-px h-4 bg-border mx-auto mb-4"></div>
@@ -781,17 +777,14 @@
           <p class="text-xs text-muted leading-relaxed">Object pooling, GC reduction, and profiler-guided improvements targeting mid-range mobile hardware.</p>
         </div>
         <div class="process-connector mt-5"></div>
-
         <div class="flex-1 text-center px-3">
           <div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center mx-auto mb-4">6</div>
           <div class="w-px h-4 bg-border mx-auto mb-4"></div>
           <h3 class="font-semibold text-ink text-sm mb-2">Deployment</h3>
-          <p class="text-xs text-muted leading-relaxed">Build pipeline to Google Play and App Store with Firebase Analytics and AdMob configured for live monitoring.</p>
+          <p class="text-xs text-muted leading-relaxed">Build pipeline to Google Play and App Store with Firebase Analytics and AdMob configured.</p>
         </div>
-
       </div>
 
-      <!-- Mobile -->
       <div class="md:hidden space-y-8 reveal">
         <div class="flex gap-4"><div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">1</div><div><h3 class="font-semibold text-ink text-sm mb-1">Planning</h3><p class="text-xs text-muted leading-relaxed">Understand scope, define systems, and plan modular architecture.</p></div></div>
         <div class="flex gap-4"><div class="w-10 h-10 rounded-full bg-accent text-white font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">2</div><div><h3 class="font-semibold text-ink text-sm mb-1">Prototype</h3><p class="text-xs text-muted leading-relaxed">Build and validate the core loop before adding content.</p></div></div>
@@ -805,9 +798,9 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════
-       CONTACT
-  ════════════════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════
+       CONTACT  (phone removed — email + LinkedIn only)
+  ════════════════════════════════════════════════ -->
   <section id="contact" class="py-24 bg-surface">
     <div class="max-w-6xl mx-auto px-6">
 
@@ -835,8 +828,7 @@
             </div>
           </a>
 
-          <!-- REPLACE: Update with your actual LinkedIn URL slug -->
-          <a href="https://linkedin.com/in/YashliPanchal" target="_blank" rel="noopener"
+          <a href="https://linkedin.com/in/YashPanchal" target="_blank" rel="noopener"
              class="flex items-center gap-4 p-5 bg-canvas rounded-xl border border-border hover:border-accent group transition-colors">
             <div class="w-10 h-10 bg-accent-light rounded-lg flex items-center justify-center flex-shrink-0">
               <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
@@ -845,27 +837,12 @@
             </div>
             <div>
               <p class="font-mono text-xs text-muted tracking-label uppercase mb-0.5">LinkedIn</p>
-              <p class="font-semibold text-ink group-hover:text-accent transition-colors text-sm">linkedin.com/in/YashliPanchal</p>
+              <p class="font-semibold text-ink group-hover:text-accent transition-colors text-sm">linkedin.com/in/YashPanchal</p>
             </div>
           </a>
 
-          <div class="p-5 bg-canvas rounded-xl border border-border">
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 bg-accent-light rounded-lg flex items-center justify-center flex-shrink-0">
-                <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                </svg>
-              </div>
-              <div>
-                <p class="font-mono text-xs text-muted tracking-label uppercase mb-0.5">Phone</p>
-                <p class="font-semibold text-ink text-sm">+91 9104499415</p>
-              </div>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Contact form -->
         <div class="reveal">
           <div class="bg-canvas p-8 rounded-2xl border border-border">
             <h3 class="font-semibold text-ink mb-6">Send a message</h3>
@@ -899,9 +876,9 @@
   </section>
 
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        FOOTER
-  ════════════════════════════════════════════════════ -->
+  ════════════════════════════════════════════════ -->
   <footer class="py-10 bg-ink">
     <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
       <p class="text-sm text-gray-400 font-mono">© 2024 Yash Panchal. All rights reserved.</p>
@@ -914,7 +891,7 @@
         <a href="#contact"    class="hover:text-white transition-colors">Contact</a>
       </nav>
       <div class="flex gap-4">
-        <a href="https://linkedin.com/in/YashliPanchal" target="_blank" rel="noopener"
+        <a href="https://linkedin.com/in/YashPanchal" target="_blank" rel="noopener"
            class="w-8 h-8 bg-white/10 hover:bg-accent rounded-lg flex items-center justify-center transition-colors" aria-label="LinkedIn">
           <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -925,16 +902,15 @@
   </footer>
 
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        CASE STUDY MODAL
-  ════════════════════════════════════════════════════ -->
+  ════════════════════════════════════════════════ -->
   <div id="modal-overlay"
-       class="fixed inset-0 z-[100] bg-black/60 hidden items-center justify-center p-4"
-       onclick="closeCase(event)">
+       class="fixed inset-0 z-[100] bg-black/60 hidden items-center justify-center p-4">
     <div id="modal-content"
          class="bg-surface w-full max-w-4xl rounded-2xl shadow-2xl relative"
          onclick="event.stopPropagation()">
-      <button onclick="closeCase()"
+      <button id="modal-close-btn"
               class="absolute top-5 right-5 w-9 h-9 bg-tag rounded-full flex items-center justify-center hover:bg-border transition-colors z-10"
               aria-label="Close case study">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -946,45 +922,205 @@
   </div>
 
 
-  <!-- ═══════════════════════════════════════════════
+  <!-- ═══════════════════════════════════════════
        JAVASCRIPT
-  ════════════════════════════════════════════════════ -->
+  ════════════════════════════════════════════════ -->
   <script>
 
-    /* ─────────────────────────────────────────────────
-       CASE STUDY DATA
-       All content sourced from Yash Panchal's resume.
-       No metrics have been fabricated. Where exact
-       numbers were not available, qualitative outcomes
-       have been used instead.
-    ──────────────────────────────────────────────────── */
+    /* ── Case Study Data ─────────────────────────────────
+       Content sourced from Yash Panchal's resume only.
+       No metrics invented. Projects are credited to
+       The Intellify; Yash contributed as programmer.
+    ─────────────────────────────────────────────────────── */
     const caseStudies = {
 
       case1: {
-        title: 'Hyper-Casual Runner',
-        genre: 'Hyper-Casual · Endless Runner',
+        title: 'Speed Nation',
+        genre: 'Racing · Endless Road',
         platforms: 'Android · iOS',
-        team: 'Studio Team',
-        role: 'Gameplay Programmer / Lead Developer',
-        overview: `An endless runner built for mobile with procedural obstacle generation, dynamic difficulty
-scaling, and a full progression system including collectibles, in-game currency, and daily rewards.
-Monetized with Google AdMob interstitial and rewarded ad formats, with UI designed to adapt
-across multiple Android and iOS screen resolutions.`,
-        problem: `Endless runners spawn and destroy many objects per second — obstacles, coins, VFX. Without
-careful management this creates constant heap allocations on the main thread, which triggers
-the garbage collector mid-session and produces visible frame stutter. On mid-range Android
-devices, even short GC pauses are noticeable to players.`,
-        myRole: `Designed and implemented the core gameplay loop, procedural obstacle spawning, difficulty
-controller, progression systems, UI layout, and AdMob integration. Also responsible for
-performance profiling and optimization passes.`,
+        studio: 'The Intellify',
+        role: 'Gameplay Programmer (Contributor)',
+        thumb: 'project1.webp',
+        overview: `Speed Nation is an endless mobile racing game featuring modular road generation on curved
+paths, a dynamic traffic system with configurable density, and a vehicle progression system
+including car purchase and weapon upgrades. Contributed as a gameplay programmer at The Intellify,
+focusing on road generation, traffic behaviour, and runtime performance.`,
+        problem: `Endless road games must continuously generate and remove world geometry without the player
+seeing a seam or experiencing a frame drop. Naive instantiation and destruction of road segments
+and traffic vehicles introduces GC pressure and noticeable hitches at segment transitions,
+particularly on lower-end Android devices.`,
+        myRole: `Implemented the road generation system, traffic system, vehicle physics approach, car tuning
+mechanic, and performance optimization for continuous world streaming.`,
         architecture: `
 ┌──────────────────────────────────────────────┐
-│             GameManager                       │
-│                                               │
-│  ┌──────────────┐    ┌─────────────────────┐ │
-│  │ Spawner Sys  │───▶│   Object Pool       │ │
-│  │ (configurable│    │  Obstacles / Coins  │ │
-│  │  patterns)   │    └─────────────────────┘ │
+│           World Generation                   │
+│                                              │
+│  ┌───────────────────────────────────────┐   │
+│  │  Road Segment Pool                    │   │
+│  │  — Modular curved segments            │   │
+│  │  — Recycled ahead of player           │   │
+│  └──────────────────┬────────────────────┘   │
+│                     │                        │
+│  ┌──────────────────▼────────────────────┐   │
+│  │  Traffic Manager                      │   │
+│  │  — Dynamic density parameter          │   │
+│  │  — Vehicle pool (physics/velocity)    │   │
+│  └──────────────────┬────────────────────┘   │
+│                     │                        │
+│  ┌──────────────────▼────────────────────┐   │
+│  │  Player Vehicle                       │   │
+│  │  — Physics / velocity movement        │   │
+│  │  — Tuning & upgrade state             │   │
+│  └───────────────────────────────────────┘   │
+└──────────────────────────────────────────────┘`,
+        implementation: `Endless Road Generation
+Modular road segment prefabs are arranged and recycled using a pool. As the player advances,
+segments behind the camera are repositioned ahead and re-initialised. Curved path handling uses
+spline-aligned transforms so segments flow smoothly without visible joints.
+
+Traffic System
+Traffic vehicles are drawn from a pool sized to the maximum density setting. A density parameter
+controls how many vehicles are active at once — tunable in data to vary difficulty or pacing.
+Vehicle movement uses velocity-based approaches suited to mobile physics budgets.
+
+Vehicle Progression
+A car purchase system manages unlockable vehicles with distinct parameters. A weapon upgrade
+system adds a progression axis beyond raw speed.
+
+Performance
+Segment recycling ahead of the player camera eliminates mid-session instantiation. Traffic vehicle
+pooling follows the same pattern, keeping GC activity minimal during continuous generation.`,
+        challenges: `1. Segment transitions on curved paths — aligning recycled segments to smooth curves without
+visible pops at the join required careful spline-based positioning.
+
+2. Traffic density vs. performance — higher density settings produced CPU load from many
+active vehicle colliders simultaneously.
+
+3. Progression balance — vehicle purchase and upgrade curves required iteration to feel
+rewarding without gating too early.`,
+        solutions: `1. Segment positioning uses spline-aligned transforms: each segment samples the path curve at
+its intended position before placement, ensuring smooth tangent alignment at joins.
+
+2. Traffic colliders are simplified on pooled vehicles — detailed colliders active only for the
+player vehicle. Traffic vehicles use trigger-based proximity checks to reduce physics solver cost.
+
+3. Progression values were defined in configurable data assets to allow rapid rebalancing
+without code changes.`,
+        results: `• Endless road generation maintained stable performance on target Android and iOS devices
+• Traffic system with configurable density shipped and tuned through production
+• Vehicle purchase and weapon upgrade progression systems implemented and live
+• Shipped to Google Play and App Store via The Intellify`,
+        lessons: `Pooling is essential for any endless game, but the recycling strategy matters as much as the
+pool itself. Repositioning segments well ahead of the player — rather than at the edge of the
+visible range — provides enough buffer to absorb any generation hitch before it reaches the player.`,
+      },
+
+      case2: {
+        title: 'What The Pool!',
+        genre: 'Puzzle · Level-Based',
+        platforms: 'Android · iOS',
+        studio: 'The Intellify',
+        role: 'Gameplay Programmer (Contributor)',
+        thumb: 'project2.webp',
+        overview: `What The Pool! is a level-based mobile puzzle game with scalable difficulty and a data-driven
+level system designed for rapid designer iteration. Modular gameplay systems support progressive
+mechanic unlocks that introduce new puzzle elements as the player advances. Custom 3D assets
+created and optimized in Blender for performance-efficient integration.`,
+        problem: `Puzzle games require frequent level tuning — difficulty curves, mechanic introduction timing,
+and content ordering all need iteration that ideally happens without engineer involvement.
+With parameters hardcoded in MonoBehaviours, every design change becomes a code change,
+which slows iteration and creates unnecessary coupling between content and logic.`,
+        myRole: `Designed and implemented the level system architecture, core puzzle mechanics, progression
+and unlock systems, and the Blender-to-Unity asset pipeline for puzzle piece models.`,
+        architecture: `
+┌──────────────────────────────────────────────┐
+│           Level System                       │
+│                                              │
+│  ┌───────────────────────────────────────┐   │
+│  │  LevelData (ScriptableObject)         │   │
+│  │  — mechanic flags                     │   │
+│  │  — difficulty parameters              │   │
+│  │  — unlock conditions                  │   │
+│  └──────────────────┬────────────────────┘   │
+│                     │                        │
+│  ┌──────────────────▼────────────────────┐   │
+│  │       LevelManager                    │   │
+│  │  Reads SO → configures session        │   │
+│  └──────────────────┬────────────────────┘   │
+│                     │                        │
+│  ┌──────────────────▼────────────────────┐   │
+│  │  Gameplay Systems (Modular)           │   │
+│  │  Mechanic A / Mechanic B / Mechanic C │   │
+│  └───────────────────────────────────────┘   │
+└──────────────────────────────────────────────┘`,
+        implementation: `Data-Driven Level System (ScriptableObjects)
+Each level is defined by a LevelData ScriptableObject containing difficulty parameters, active
+mechanics, and unlock conditions. The LevelManager reads this data at runtime and configures
+the session. Adding or reordering levels requires only asset changes — no code modifications.
+
+Modular Gameplay Systems
+Each puzzle mechanic is implemented as an independent module that can be enabled or disabled
+per level via the LevelData asset, allowing new mechanics to be introduced progressively
+without modifying existing level logic.
+
+Progressive Unlock System
+Unlock conditions are defined in data. The progression manager checks conditions at session
+end and updates player state accordingly.
+
+3D Asset Pipeline
+Puzzle piece models were created in Blender with UV texturing and optimised topology to keep
+draw calls and texture memory within mobile budgets.`,
+        challenges: `1. Level configuration coupling — early versions had level parameters hardcoded in
+MonoBehaviours, making content iteration slow and error-prone.
+
+2. Asset performance — initial Blender exports had higher polygon counts and unoptimised UV
+layouts that affected performance on target devices.
+
+3. Mechanic introduction pacing — without a data-driven system, testing different unlock orders
+required code changes and recompile cycles.`,
+        solutions: `1. Migrated all level configuration to ScriptableObject assets. Designers can author and
+reorder levels without any code changes.
+
+2. Optimised Blender models for mobile: reduced polygon count on non-silhouette geometry,
+consolidated UV islands to minimise texture atlas waste.
+
+3. With mechanics defined as flags in ScriptableObjects, unlock ordering became a purely
+editorial task — testable and reversible without code involvement.`,
+        results: `• Data-driven level system enabled design iteration without code changes
+• Modular mechanic architecture supported addition of new puzzle elements without reworking existing levels
+• 3D assets from Blender integrated within mobile performance budgets
+• Shipped to Google Play and App Store via The Intellify`,
+        lessons: `Separating content from code with ScriptableObjects pays dividends quickly on games with
+authored content. The upfront cost of the system is low; the ongoing saving in iteration time
+is significant.`,
+      },
+
+      case3: {
+        title: 'Spikes',
+        genre: 'Hyper-Casual · Endless Runner',
+        platforms: 'Android · iOS',
+        studio: 'The Intellify',
+        role: 'Gameplay Programmer (Contributor)',
+        thumb: 'project3.webp',
+        overview: `Spikes is a hyper-casual mobile endless runner featuring procedural obstacle generation,
+dynamic difficulty scaling, and a full progression system including collectibles, in-game
+currency, and daily rewards. Monetized with Google AdMob interstitial and rewarded ad formats,
+with UI adapted across multiple Android and iOS screen resolutions.`,
+        problem: `Endless runners spawn and destroy many objects per second. Without careful management
+this creates constant heap allocations on the main thread, triggering the garbage collector
+mid-session and producing visible frame stutter. On mid-range Android devices, even short
+GC pauses are immediately noticeable to players.`,
+        myRole: `Architected and implemented the core endless runner loop, procedural obstacle spawning,
+difficulty controller, progression systems, UI layout, and AdMob integration. Also responsible
+for performance profiling and optimization.`,
+        architecture: `
+┌──────────────────────────────────────────────┐
+│             GameManager                      │
+│                                              │
+│  ┌──────────────┐    ┌────────────────────┐  │
+│  │ Spawner Sys  │───▶│   Object Pool      │  │
+│  │ (configurable│    │  Obstacles / Coins │  │
+│  │  patterns)   │    └────────────────────┘  │
 │  └──────┬───────┘                            │
 │         │                                    │
 │  ┌──────▼──────────────┐                     │
@@ -992,261 +1128,155 @@ performance profiling and optimization passes.`,
 │  │ (speed, gap, pattern)│                    │
 │  └──────────────────────┘                    │
 │                                              │
-│  ┌──────────────┐  ┌────────────────────┐   │
-│  │  Progression │  │  AdMob (Interstitial│   │
-│  │  (currency,  │  │  + Rewarded Ads)   │   │
-│  │  daily reward│  └────────────────────┘   │
+│  ┌──────────────┐  ┌──────────────────────┐  │
+│  │  Progression │  │  AdMob (Interstitial  │  │
+│  │  (currency,  │  │  + Rewarded Ads)      │  │
+│  │  daily reward│  └──────────────────────┘  │
 │  └──────────────┘                            │
 └──────────────────────────────────────────────┘`,
         implementation: `Object Pooling
-All obstacles, coins, and VFX use typed pools pre-warmed before gameplay begins.
-Objects are returned to the pool on exit rather than destroyed, eliminating runtime heap allocations during active sessions.
+All obstacles, coins, and VFX use typed pools pre-warmed before gameplay begins. Objects are
+returned to the pool on exit rather than destroyed, eliminating runtime heap allocations during
+active sessions.
 
 Procedural Obstacle Generation
-Spawn patterns and timing are configurable via parameterised settings, allowing design tuning without code changes. Patterns are selected with exclusion logic to prevent immediate repetition.
+Spawn patterns and timing are configurable via parameterised settings, allowing design tuning
+without code changes. Patterns include exclusion logic to prevent immediate repetition.
 
 Dynamic Difficulty Scaling
-Game speed and obstacle gap width are driven by a difficulty controller that ramps progressively as the player advances, keeping sessions challenging without spiking too hard early.
+Game speed and obstacle gap width are driven by a difficulty controller that ramps progressively
+as the player advances, keeping sessions challenging without difficulty spikes early.
 
 Progression Systems
 Collectibles feed an in-game currency. A daily rewards system encourages return sessions.
 
 Ad Integration
-AdMob interstitial ads shown at natural session break points. Rewarded ads tied to an in-game currency multiplier — player-initiated, never forced.
+AdMob interstitial ads shown at natural session break points. Rewarded ads tied to in-game
+currency — player-initiated, never forced.
 
 UI
-Responsive UI layouts designed to support multiple Android and iOS screen resolutions. UI references validated against a device resolution matrix during QA.`,
-        challenges: `1. Runtime GC pressure — obstacle and coin instantiation on the main thread caused frame stutter during dense spawn sequences on mid-range Android devices.
+Responsive layouts support multiple Android and iOS screen resolutions, validated against a
+device matrix during QA.`,
+        challenges: `1. Runtime GC pressure — obstacle and coin instantiation on the main thread caused frame
+stutter during dense spawn sequences on mid-range Android devices.
 
-2. Pattern repetition — without exclusion logic, the random spawn selector occasionally produced the same obstacle sequence back-to-back, which felt broken to playtesters.
+2. Pattern repetition — without exclusion logic, the random spawn selector occasionally
+produced the same obstacle sequence back-to-back, which felt broken to playtesters.
 
-3. Screen resolution handling — the initial UI broke on devices with non-standard aspect ratios, including certain Android tablets and notched phones.`,
-        solutions: `1. Replaced all runtime instantiation with pre-warmed object pools. Pool sizes were calculated from maximum on-screen count, then built before the first spawn event. GC pressure from spawning was eliminated.
+3. Screen resolution handling — the initial UI broke on devices with non-standard aspect
+ratios, including certain Android tablets and notched phones.`,
+        solutions: `1. Replaced all runtime instantiation with pre-warmed object pools. Pool sizes were
+calculated from maximum on-screen count and built before the first spawn event. GC pressure
+from spawning was eliminated.
 
-2. Added a recency exclusion list — the last N patterns cannot be selected again — and expanded the pattern library to ensure variety across typical session lengths.
+2. Added a recency exclusion list — the last N patterns cannot be selected again — and
+expanded the pattern library to ensure variety across typical session lengths.
 
-3. Used Unity's Canvas Scaler with a reference resolution and Screen Match Mode set to expand, then tested against a device matrix covering common Android and iOS resolutions.`,
-        metrics: [],
-        results: `• Shipped to Google Play and App Store as part of studio production pipeline
+3. Used Unity's Canvas Scaler with Screen Match Mode set to expand, then tested against a
+device matrix covering common Android and iOS resolutions.`,
+        results: `• Shipped to Google Play and App Store via The Intellify
 • Object pooling resolved GC-related frame stutter observed during QA on mid-range Android
 • AdMob interstitial and rewarded ad integration completed and live
 • UI validated across multiple Android and iOS screen resolutions`,
-        lessons: `Object pooling should be the starting architecture for any mobile game that spawns and destroys frequently — not a later optimisation. Retrofitting pools into an existing system is considerably more effort than designing for them from the beginning.`,
-      },
-
-      case2: {
-        title: 'Puzzle Game',
-        genre: 'Puzzle · Level-Based',
-        platforms: 'Android · iOS',
-        team: 'Studio Team',
-        role: 'Gameplay Programmer',
-        overview: `A level-based mobile puzzle game with a scalable difficulty progression and a data-driven
-level system designed to support rapid iteration. Modular gameplay systems support progressive
-mechanic unlocks that introduce new puzzle elements as the player advances.
-Custom 3D assets were created and optimised in Blender for performance-efficient integration.`,
-        problem: `Puzzle games require frequent level tuning — difficulty curves, mechanic introduction timing,
-and content ordering all need iteration that ideally happens without engineer involvement.
-With a hardcoded level system, every design change becomes a code change, which slows
-iteration and creates unnecessary coupling between content and logic.`,
-        myRole: `Designed and implemented the level system architecture, core puzzle mechanics, progression
-and unlock systems, and the Blender-to-Unity asset pipeline for puzzle piece models.`,
-        architecture: `
-┌──────────────────────────────────────────────┐
-│           Level System                        │
-│                                               │
-│  ┌───────────────────────────────────────┐   │
-│  │  LevelData (ScriptableObject)         │   │
-│  │  — mechanic flags                     │   │
-│  │  — difficulty parameters              │   │
-│  │  — unlock conditions                  │   │
-│  └──────────────┬────────────────────────┘   │
-│                 │                             │
-│  ┌──────────────▼────────────────────────┐   │
-│  │       LevelManager                    │   │
-│  │  Reads SO data → configures session   │   │
-│  └──────────────┬────────────────────────┘   │
-│                 │                             │
-│  ┌──────────────▼────────────────────────┐   │
-│  │  Gameplay Systems (Modular)           │   │
-│  │  Mechanic A / Mechanic B / Mechanic C │   │
-│  └───────────────────────────────────────┘   │
-└──────────────────────────────────────────────┘`,
-        implementation: `Data-Driven Level System (ScriptableObjects)
-Each level is defined by a LevelData ScriptableObject containing difficulty parameters, active mechanics, and unlock conditions. The LevelManager reads this data at runtime and configures the session accordingly. Adding or reordering levels requires only asset changes — no code modifications.
-
-Modular Gameplay Systems
-Each puzzle mechanic is implemented as an independent module that can be enabled or disabled per level via the LevelData asset. This allows new mechanics to be introduced progressively without changing existing level logic.
-
-Progressive Unlock System
-Unlock conditions are defined in data rather than code. The progression manager checks conditions at session end and updates player state accordingly.
-
-3D Asset Pipeline
-Puzzle piece models were created in Blender with UV texturing and optimised topology to keep draw calls and texture memory within mobile budgets. Assets were exported and integrated directly into Unity with material configuration handled in-engine.`,
-        challenges: `1. Level configuration coupling — early versions had level parameters hardcoded in MonoBehaviours, making content iteration slow and error-prone.
-
-2. Asset performance — initial Blender exports had higher polygon counts and unoptimised UV layouts that caused visible performance cost on target devices.
-
-3. Mechanic introduction pacing — without a data-driven system, testing different unlock orders required code changes and full recompile cycles.`,
-        solutions: `1. Migrated all level configuration to ScriptableObject assets. Designers can now author and reorder levels without any code changes.
-
-2. Optimised Blender models for mobile: reduced polygon count on non-silhouette geometry, consolidated UV islands to minimise texture atlas waste, and verified within Unity's Frame Debugger.
-
-3. With mechanics defined as flags in ScriptableObjects, unlock ordering became a purely editorial task — testable and reversible without code involvement.`,
-        metrics: [],
-        results: `• Data-driven level system enabled design iteration without code changes
-• Modular mechanic architecture supported addition of new puzzle elements without reworking existing levels
-• 3D assets from Blender integrated within mobile performance budgets
-• Shipped to Google Play and App Store`,
-        lessons: `Separating content from code with ScriptableObjects pays dividends quickly on games with large amounts of authored content. The upfront cost of the system is low; the ongoing saving in iteration time is significant.`,
-      },
-
-      case3: {
-        title: 'Car Game',
-        genre: 'Racing · Endless Road',
-        platforms: 'Android · iOS',
-        team: 'Studio Team',
-        role: 'Gameplay Programmer',
-        overview: `An endless mobile car game featuring procedural road generation on curved paths, a dynamic
-traffic system with density control, and a vehicle progression system including car purchase
-and weapon upgrades. Designed to maintain stable gameplay performance during continuous
-world generation.`,
-        problem: `Endless road games must continuously generate and remove world geometry without the player
-ever seeing a seam or experiencing a frame drop. Naive instantiation and destruction of road
-segments and traffic vehicles introduces both GC pressure and noticeable hitches at segment
-transitions, particularly on lower-end Android devices.`,
-        myRole: `Implemented the road generation system, traffic system, vehicle physics, tuning mechanic,
-and performance optimisation for continuous world streaming.`,
-        architecture: `
-┌──────────────────────────────────────────────┐
-│           World Generation                    │
-│                                               │
-│  ┌────────────────────────────────────────┐  │
-│  │  Road Segment Pool                     │  │
-│  │  — Modular curved segments             │  │
-│  │  — Recycled ahead of player            │  │
-│  └──────────────────┬─────────────────────┘  │
-│                     │                         │
-│  ┌──────────────────▼─────────────────────┐  │
-│  │  Traffic Manager                       │  │
-│  │  — Dynamic density parameter           │  │
-│  │  — Vehicle pool (physics / velocity)   │  │
-│  └──────────────────────────────────────┬─┘  │
-│                                         │     │
-│  ┌──────────────────────────────────────▼┐   │
-│  │  Player Vehicle                       │   │
-│  │  — Physics / velocity movement        │   │
-│  │  — Tuning & upgrade state             │   │
-│  └───────────────────────────────────────┘   │
-└──────────────────────────────────────────────┘`,
-        implementation: `Endless Road Generation
-Modular road segment prefabs are arranged and recycled using a pool. As the player advances, segments behind the camera are repositioned ahead and re-initialised. Curved path handling uses spline-aligned transforms so segments flow smoothly without visible joints.
-
-Traffic System
-Traffic vehicles are drawn from a pool sized to the maximum density setting. A density parameter controls how many vehicles are active at once — tunable in data to vary difficulty or pacing across progression stages. Vehicle movement uses velocity-based approaches suitable for mobile physics budgets.
-
-Vehicle Progression
-A car purchase system manages unlockable vehicles with distinct parameters. A weapon upgrade system layers on top, adding a progression axis beyond raw speed.
-
-Performance
-Segment recycling ahead of player camera eliminates instantiation mid-session. Traffic vehicle pooling follows the same pattern. Combined, these keep GC activity minimal during continuous generation.`,
-        challenges: `1. Segment transitions on curved paths — aligning recycled segments to smooth curved paths without visible pops at the join required careful spline-based positioning.
-
-2. Traffic density vs. performance — higher density settings produced CPU spikes from physics interactions with many active vehicle colliders simultaneously.
-
-3. Progression balance — the car purchase and upgrade system required iteration on price curves and unlock ordering to feel rewarding without gating too early.`,
-        solutions: `1. Segment positioning uses spline-aligned transforms: each segment samples the path curve at its intended position before being placed, ensuring smooth tangent alignment at joins.
-
-2. Traffic colliders are simplified on pooled vehicles — detailed colliders active only for the player vehicle. Traffic vehicles use trigger-based proximity checks, significantly reducing physics solver cost at high density.
-
-3. Progression values were defined in configurable data assets to allow rapid rebalancing without code changes.`,
-        metrics: [],
-        results: `• Continuous road generation maintained stable gameplay performance on target devices
-• Traffic system with configurable density shipped and tuned through production
-• Vehicle purchase and weapon upgrade progression systems implemented and live
-• Shipped to Google Play and App Store`,
-        lessons: `Pooling is essential for any endless game, but the recycling strategy matters as much as the pool itself. Repositioning segments ahead of the player — rather than at the far edge of the visible range — gave enough buffer to avoid any generation hitch reaching the player.`,
+        lessons: `Object pooling should be the starting architecture for any mobile game that spawns and
+destroys frequently — not a later optimisation. Retrofitting pools into an existing system is
+considerably more effort than designing for them from the beginning.`,
       },
 
       case4: {
-        title: 'AR Marker-Based App',
+        title: 'AR Learning',
         genre: 'AR Application · Educational',
         platforms: 'Android · iOS',
-        team: 'Studio Team',
-        role: 'AR Developer',
-        overview: `A marker-based augmented reality application built with Unity and Vuforia for Android and iOS.
-The app uses image recognition to trigger interactive educational content — videos, 3D models,
-animations, and particle effects — tied to physical printed markers. Designed to be used by
-students and educators as an interactive learning companion.`,
+        studio: 'The Intellify',
+        role: 'AR Developer (Contributor)',
+        thumb: 'project4.png',
+        overview: `AR Learning is a marker-based augmented reality application built with Unity and Vuforia for
+Android and iOS. The app uses image recognition to trigger interactive educational content —
+videos, 3D models, animations, and particle effects — tied to physical printed markers. Designed
+as an interactive learning companion for young learners.`,
         problem: `Marker-based AR applications depend on tracking reliability — if the camera loses the marker,
-content disappears or judders, which breaks the educational experience. Additionally,
-dynamically loading different content types (video, 3D model, animation, particles) from
-a single marker trigger adds complexity to state management and memory use.`,
-        myRole: `Implemented the Vuforia marker recognition setup, dynamic content switching system,
-UI layer, native media playback integration, and tracking optimisation for both Android and iOS.`,
+content disappears or judders, breaking the educational experience. Additionally, dynamically
+loading different content types (video, 3D model, animation, particles) from a single marker
+trigger adds complexity to state management and memory use.`,
+        myRole: `Implemented the Vuforia marker recognition setup, dynamic content switching system, UI layer,
+native media playback integration, and tracking optimization for both Android and iOS.`,
         architecture: `
 ┌──────────────────────────────────────────────┐
-│           AR Session                          │
-│                                               │
-│  ┌────────────────────────────────────────┐  │
-│  │  Vuforia Image Target                  │  │
-│  │  — Marker database                     │  │
-│  │  — Found / Lost callbacks              │  │
-│  └───────────────┬────────────────────────┘  │
-│                  │                            │
-│  ┌───────────────▼────────────────────────┐  │
-│  │  Content Controller                    │  │
-│  │  — Reads marker ID                    │  │
-│  │  — Loads appropriate content type     │  │
-│  │    (Video / 3D Model / Anim / VFX)    │  │
-│  └───────────────┬────────────────────────┘  │
-│                  │                            │
-│  ┌───────────────▼────────────────────────┐  │
-│  │  Content Modules                       │  │
-│  │  VideoPlayer  │  ModelLoader  │  VFX   │  │
-│  └───────────────────────────────────────-┘  │
+│           AR Session                         │
 │                                              │
-│  ┌────────────────────────────────────────┐  │
-│  │  UI Layer (marker prompt, controls)    │  │
-│  └────────────────────────────────────────┘  │
+│  ┌───────────────────────────────────────┐   │
+│  │  Vuforia Image Target                 │   │
+│  │  — Marker database                    │   │
+│  │  — Found / Lost callbacks             │   │
+│  └──────────────────┬────────────────────┘   │
+│                     │                        │
+│  ┌──────────────────▼────────────────────┐   │
+│  │  Content Controller                   │   │
+│  │  — Reads marker ID                    │   │
+│  │  — Loads appropriate content type     │   │
+│  │  (Video / 3D Model / Anim / VFX)      │   │
+│  └──────────────────┬────────────────────┘   │
+│                     │                        │
+│  ┌──────────────────▼────────────────────┐   │
+│  │  Content Modules                      │   │
+│  │  VideoPlayer │ ModelLoader │ VFX      │   │
+│  └───────────────────────────────────────┘   │
+│                                              │
+│  ┌───────────────────────────────────────┐   │
+│  │  UI Layer (marker prompt, controls)   │   │
+│  └───────────────────────────────────────┘   │
 └──────────────────────────────────────────────┘`,
         implementation: `Vuforia Integration
-Image target database configured in Vuforia Developer Portal and imported into Unity. Each physical marker maps to a unique image target ID. DefaultTrackableEventHandler extended to call the Content Controller on Found and Lost events.
+Image target database configured in Vuforia Developer Portal and imported into Unity. Each
+physical marker maps to a unique image target ID. DefaultTrackableEventHandler extended to
+call the Content Controller on Found and Lost events.
 
 Dynamic Content Switching
-A Content Controller reads the marker ID and activates the corresponding content module: Unity VideoPlayer for video content, instantiated prefabs for 3D models with animation controllers, and ParticleSystem components for effects. Inactive modules are disabled rather than destroyed to avoid re-load cost on re-detection.
+A Content Controller reads the marker ID and activates the corresponding content module:
+Unity VideoPlayer for video content, instantiated prefabs for 3D models with animation
+controllers, and ParticleSystem components for effects. Inactive modules are disabled rather
+than destroyed to avoid re-load cost on re-detection.
 
 Native Media Playback
-Video content uses Unity's VideoPlayer component with platform-specific transcoded files (H.264 for broad compatibility). On iOS, native playback via AVFoundation handles format support not available through Unity's managed player.
+Video content uses Unity's VideoPlayer component. On iOS, native playback handles format
+support not available through Unity's managed player.
 
 Tracking Optimisation
-Vuforia tracking mode set to optimize for image targets specifically. Marker image contrast and feature density were reviewed during QA to ensure reliable detection under variable lighting conditions.
+Vuforia tracking mode optimised for image targets specifically. Marker image contrast and
+feature density were reviewed during QA to ensure reliable detection under variable lighting.
 
 UI
-A simple prompt guides users to point the camera at the correct marker. Playback controls (play, pause, back) overlay the AR content where relevant.`,
-        challenges: `1. Tracking instability under low-light conditions — markers lost tracking more frequently in classroom environments with overhead fluorescent lighting or shadows.
+A simple prompt guides users to point the camera at the correct marker. Playback controls
+overlay the AR content where relevant.`,
+        challenges: `1. Tracking instability under low-light conditions — markers lost tracking in classroom
+environments with overhead fluorescent lighting or shadows.
 
-2. Content switching latency — loading a 3D model or video on marker detection produced a short visible delay before content appeared.
+2. Content switching latency — loading a 3D model or video on marker detection produced a
+short visible delay before content appeared.
 
-3. iOS video playback — certain video formats did not play back correctly through Unity's VideoPlayer on iOS without additional transcoding.`,
-        solutions: `1. Reviewed and improved the physical marker designs — increased contrast and feature density in the marker images, which significantly improved Vuforia tracking confidence across lighting conditions.
+3. iOS video playback — certain video formats did not play correctly through Unity's VideoPlayer
+on iOS without additional transcoding.`,
+        solutions: `1. Improved the physical marker designs — increased contrast and feature density, which
+significantly improved Vuforia tracking confidence across lighting conditions.
 
-2. Pre-loaded all content modules at app launch and kept inactive modules disabled. On detection, the relevant module is simply enabled rather than loaded, eliminating the initialisation delay.
+2. Pre-loaded all content modules at app launch and kept inactive modules disabled. On
+detection, the relevant module is simply enabled rather than loaded, eliminating the delay.
 
-3. Videos were transcoded to H.264 with platform-specific settings, and an iOS-specific native playback path was implemented where Unity's VideoPlayer fell short.`,
-        metrics: [],
-        results: `• Marker-based AR application shipped to Google Play and App Store
+3. Videos were transcoded with platform-specific settings, and an iOS-specific native playback
+path was implemented where Unity's VideoPlayer fell short.`,
+        results: `• Marker-based AR application shipped to Google Play and App Store via The Intellify
 • Reliable marker detection achieved across tested classroom lighting conditions
 • Dynamic content switching (video, 3D, animation, particles) functional per marker
 • Native iOS media playback integrated for format compatibility`,
-        lessons: `AR marker quality is as important as the code. Spending time on the physical marker design — contrast, feature density, print quality — has more impact on tracking reliability than any SDK-level setting. The marker is part of the system.`,
+        lessons: `AR marker quality is as important as the code. Spending time on the physical marker design —
+contrast, feature density, print quality — has more impact on tracking reliability than any
+SDK-level setting. The marker is part of the system.`,
       },
 
     };
 
 
-    /* ─────────────────────────────────────────────────
-       MODAL
-    ──────────────────────────────────────────────────── */
+    /* ── Modal ────────────────────────────────────── */
     function openCase(id) {
       const cs = caseStudies[id];
       if (!cs) return;
@@ -1256,7 +1286,7 @@ A simple prompt guides users to point the camera at the correct marker. Playback
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="font-mono text-xs px-3 py-1 bg-accent-light text-accent rounded-full font-semibold">${cs.genre}</span>
             <span class="font-mono text-xs px-3 py-1 bg-tag text-muted rounded-full">${cs.platforms}</span>
-            <span class="font-mono text-xs px-3 py-1 bg-tag text-muted rounded-full">${cs.team}</span>
+            <span class="font-mono text-xs px-3 py-1 bg-tag text-muted rounded-full">@ ${cs.studio}</span>
           </div>
           <h2 class="text-3xl md:text-4xl font-extrabold text-ink mb-2">${cs.title}</h2>
           <p class="font-mono text-sm text-accent">${cs.role}</p>
@@ -1280,7 +1310,7 @@ A simple prompt guides users to point the camera at the correct marker. Playback
         <div class="mb-10">
           <p class="font-mono text-xs text-muted tracking-label uppercase mb-3">System Architecture</p>
           <div class="arch-diagram">${cs.architecture}</div>
-          <p class="text-xs text-muted mt-2 italic">Replace with a visual diagram (e.g. Excalidraw) for your final portfolio.</p>
+          <p class="text-xs text-muted mt-2 italic">Replace with a visual diagram (e.g. Excalidraw) for a polished version.</p>
         </div>
 
         <div class="mb-10">
@@ -1306,77 +1336,54 @@ A simple prompt guides users to point the camera at the correct marker. Playback
 
         <div>
           <p class="font-mono text-xs text-muted tracking-label uppercase mb-3">Lessons Learned</p>
-          <p class="text-muted leading-relaxed text-sm">${cs.lessons}</p>
+          <p class="text-muted leading-relaxed text-sm whitespace-pre-wrap">${cs.lessons}</p>
         </div>
       `;
 
       const overlay = document.getElementById('modal-overlay');
       overlay.classList.remove('hidden');
       overlay.classList.add('flex');
+      document.getElementById('modal-content').scrollTop = 0;
       document.body.style.overflow = 'hidden';
     }
 
-    function closeCase(event) {
-      if (event && event.target !== document.getElementById('modal-overlay')) return;
-      const overlay = document.getElementById('modal-overlay');
-      overlay.classList.add('hidden');
-      overlay.classList.remove('flex');
+    function closeModal() {
+      document.getElementById('modal-overlay').classList.add('hidden');
+      document.getElementById('modal-overlay').classList.remove('flex');
       document.body.style.overflow = '';
     }
 
     document.getElementById('modal-overlay').addEventListener('click', function(e) {
-      if (e.target === this) closeCase(e);
+      if (e.target === this) closeModal();
     });
-
-    document.querySelector('#modal-content button[onclick="closeCase()"]')?.addEventListener('click', () => {
-      document.getElementById('modal-overlay').classList.add('hidden');
-      document.getElementById('modal-overlay').classList.remove('flex');
-      document.body.style.overflow = '';
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        document.getElementById('modal-overlay').classList.add('hidden');
-        document.getElementById('modal-overlay').classList.remove('flex');
-        document.body.style.overflow = '';
-      }
-    });
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
 
-    /* ─────────────────────────────────────────────────
-       NAVBAR
-    ──────────────────────────────────────────────────── */
+    /* ── Navbar ───────────────────────────────────── */
     const navbar   = document.getElementById('navbar');
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
 
     function updateNav() {
       if (window.scrollY > 20) {
-        navbar.classList.add('bg-surface/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-border');
+        navbar.classList.add('bg-surface/95','backdrop-blur-sm','shadow-sm','border-b','border-border');
       } else {
-        navbar.classList.remove('bg-surface/95', 'backdrop-blur-sm', 'shadow-sm', 'border-b', 'border-border');
+        navbar.classList.remove('bg-surface/95','backdrop-blur-sm','shadow-sm','border-b','border-border');
       }
       let current = '';
-      sections.forEach(section => {
-        if (window.scrollY >= section.offsetTop - 120) current = section.id;
-      });
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-      });
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${current}`));
     }
-
     window.addEventListener('scroll', updateNav, { passive: true });
     updateNav();
 
 
-    /* ─────────────────────────────────────────────────
-       MOBILE MENU
-    ──────────────────────────────────────────────────── */
+    /* ── Mobile menu ──────────────────────────────── */
     const mobileMenuBtn  = document.getElementById('mobile-menu-btn');
     const mobileMenu     = document.getElementById('mobile-menu');
     const menuIconBars   = document.getElementById('menu-icon-bars');
     const menuIconClose  = document.getElementById('menu-icon-close');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
     mobileMenuBtn.addEventListener('click', () => {
       const open = !mobileMenu.classList.contains('hidden');
@@ -1384,55 +1391,40 @@ A simple prompt guides users to point the camera at the correct marker. Playback
       menuIconBars.classList.toggle('hidden', !open);
       menuIconClose.classList.toggle('hidden', open);
     });
-
-    mobileNavLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuIconBars.classList.remove('hidden');
-        menuIconClose.classList.add('hidden');
-      });
-    });
+    document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      menuIconBars.classList.remove('hidden');
+      menuIconClose.classList.add('hidden');
+    }));
 
 
-    /* ─────────────────────────────────────────────────
-       SCROLL REVEAL
-    ──────────────────────────────────────────────────── */
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    /* ── Scroll reveal ────────────────────────────── */
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
           const siblings = Array.from(entry.target.parentElement?.children || []);
-          const idx = siblings.indexOf(entry.target);
-          entry.target.style.transitionDelay = `${idx * 60}ms`;
+          entry.target.style.transitionDelay = `${siblings.indexOf(entry.target) * 60}ms`;
           entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
+          revealObs.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-    revealElements.forEach(el => revealObserver.observe(el));
 
-
-    /* ─────────────────────────────────────────────────
-       CONTACT FORM STUB
-       REPLACE: Wire to Formspree or EmailJS for real
-       form submission:
-       https://formspree.io  |  https://emailjs.com
-    ──────────────────────────────────────────────────── */
+    /* ── Contact form stub ────────────────────────── */
     function submitContact() {
       const name    = document.getElementById('contact-name').value.trim();
       const email   = document.getElementById('contact-email').value.trim();
       const message = document.getElementById('contact-message').value.trim();
       const msgEl   = document.getElementById('contact-msg');
-
       if (!name || !email || !message) {
-        msgEl.textContent = 'Please fill in all fields.';
+        msgEl.textContent = 'Please fill in all fields.';`
         msgEl.className = 'mt-3 text-center text-sm text-amber font-medium';
         msgEl.classList.remove('hidden');
         return;
       }
-
-      // REPLACE: Add your real submission logic here
+      // REPLACE: Add Formspree or EmailJS integration here
       msgEl.textContent = "✓ Message sent! I'll get back to you within 24 hours.";
       msgEl.className = 'mt-3 text-center text-sm text-green font-medium';
       msgEl.classList.remove('hidden');
@@ -1442,6 +1434,5 @@ A simple prompt guides users to point the camera at the correct marker. Playback
     }
 
   </script>
-
 </body>
 </html>
